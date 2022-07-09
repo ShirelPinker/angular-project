@@ -1,0 +1,42 @@
+<div class="register1Container">
+    <form [formGroup]="signupForm">
+        <div class="form-group">
+            <label for="governmentId">government Id</label>
+            <input type="text" id="governmentId" formControlName="governmentId" class="form-control">
+            <span *ngIf="signupForm.get('governmentId').status=='INVALID' &&  signupForm.get('governmentId').touched">
+                Please enter a valid governmentId
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="text" id="email" formControlName="email" class="form-control">
+            <span *ngIf="signupForm.get('email').status=='INVALID'  &&  signupForm.get('email').touched">
+                Please enter a valid email status
+            </span>
+        </div>
+        <div formGroupName="passwordsFeilds">
+            <div class="form-group">
+                <label for="password">password</label>
+                <input type="text" id="password" formControlName="password" class="form-control">
+                <span *ngIf="!signupForm.get('passwordsFeilds.password').valid &&  signupForm.get('passwordsFeilds.password').touched">
+                    Please enter a valid password
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="confirmedPassword">confirmedPassword</label>
+                <input type="text" id="confirmedPassword" formControlName="confirmedPassword" class="form-control">
+                <span
+                    *ngIf="!signupForm.get('passwordsFeilds.confirmedPassword').valid &&  signupForm.get('passwordsFeilds.confirmedPassword').touched">
+                    Please enter a valid confirmedPassword
+                </span>
+            </div>
+            <span
+            *ngIf="!signupForm.get('passwordsFeilds').valid &&  signupForm.get('passwordsFeilds').touched">
+            Please enter a valid confirmedPassword
+        </span>
+        </div>
+
+        <button (click)="onNextClicked()" class="nextBtn" type="button"
+            [disabled]="!signupForm.valid">Next</button>
+    </form>
+</div>

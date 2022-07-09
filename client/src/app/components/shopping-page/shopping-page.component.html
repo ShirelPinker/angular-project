@@ -1,0 +1,16 @@
+<div class="search">
+    <input (keydown.enter)="searchProduct()" type="text" [(ngModel)]="searchWord">
+    <button class="serachBtn" (click)="searchProduct()">search</button>
+</div>
+
+<div class="mainContainer">
+    <div class="sideBar">
+        <app-cart class="cartContainer" *ngIf="mode!='admin'"></app-cart>
+        <app-admin-management *ngIf="mode=='admin'"></app-admin-management>
+    </div>
+    <div class="storeContainer">
+        <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
+        </app-categories>
+        <app-products class="productsContainer"></app-products>
+    </div>
+</div>

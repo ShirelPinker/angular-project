@@ -1,0 +1,5 @@
+*.docx
+**.docx
+node_modules
+.angular
+.vscode

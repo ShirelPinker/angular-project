@@ -1,0 +1,8 @@
+<div class="cartItemContainer">
+    <button *ngIf="mode=='store'" (click)="onDeleteCartItemClicked()">x</button>
+    <div [innerHtml]="productName | highlighter:searchedText" ></div>
+    <div>Quantity: {{cartItem.quantity}}</div>
+    <div>Total price: {{price}}</div>
+    <img src={{cartItem.productImgUrl}} class="cartItemImg" >
+  
+    </div>

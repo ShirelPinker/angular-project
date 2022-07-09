@@ -1,0 +1,7 @@
+<div>My Cart</div>
+<button (click)="onBackClicked()" class="backToStoreBtn">Back</button>
+<div class="search">
+  search:  <input type="text" [(ngModel)]="searchedText">
+</div>
+<app-cart [searchedText]="searchedText"></app-cart>
+<div>No Changes Permitted Here</div>

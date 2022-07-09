@@ -1,0 +1,13 @@
+.mainPageContainer {
+    display: flex;
+    padding: 20px;
+    border: 1px solid rgb(125, 158, 184);
+}
+
+.mainPageItem {
+    width: 30%;
+    margin: 10px;
+    border: 1px solid rgb(125, 158, 184);
+    padding: 7px;
+
+}

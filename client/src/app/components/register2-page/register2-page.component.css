@@ -1,0 +1,15 @@
+.register2Container{
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    margin:auto;
+    justify-content: center;
+}
+
+.submitBtn{
+    margin: auto;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red
+}

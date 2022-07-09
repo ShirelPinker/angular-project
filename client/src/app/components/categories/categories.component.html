@@ -1,0 +1,3 @@
+<div class="categoriesContainer">
+<button [class.selectedCategory] = "activeCategory === category.id" class="category" *ngFor="let category of (categories$ | async) " (click)="onCategoryClicked(category.id)">{{category.name}}</button>
+</div>

@@ -1,0 +1,13 @@
+
+<div class="cartContainer"></div>
+<div class="cartItemsContainer">
+    <app-cart-item [searchedText]="searchedText" *ngFor="let cartItem of (cartItems$ | async)" [cartItem]="cartItem"></app-cart-item>
+</div>
+
+<div class="actionBtnsContainer">
+    <button *ngIf="mode=='store'"  (click)="onEmptyCartClicked()">Empty Cart</button>
+    total price: {{totalPrice}}
+    <button *ngIf="mode=='store'" (click)="onCheckoutClicked()">Checkout</button>
+
+</div>
+

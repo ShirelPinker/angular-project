@@ -1,0 +1,11 @@
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.headerImg{
+    width: 200px;
+}
+.introduction{
+    color:rgb(149, 110, 184);
+}

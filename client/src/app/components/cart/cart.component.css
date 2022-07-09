@@ -1,0 +1,13 @@
+.cartContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.cartItemsContainer{
+    height: 80%;
+
+}
+
+.actionBtnsContainer{
+    height: 10%
+}

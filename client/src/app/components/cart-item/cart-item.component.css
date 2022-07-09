@@ -1,0 +1,16 @@
+.cartItemContainer{
+    width:90%;
+    height:200px;
+    padding: 10px;
+    margin: 7px;
+
+}
+
+.cartItemImg{
+    width:100px;
+    height:100px;
+}
+
+::ng-deep .highlighted-text{
+    background-color: yellow;
+  }

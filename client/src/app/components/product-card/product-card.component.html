@@ -1,0 +1,10 @@
+<div class="productCard">
+    <button (click)="onEditClicked()" *ngIf="mode=='admin'">Edit</button>
+
+    <div>{{productItem.name}}</div>
+    <div>price: {{productItem.price}}</div>
+    <img class="productImg" src={{productItem.imgUrl}}><br>
+    <div *ngIf="mode=='store'"> quantity<input type="number" [(ngModel)]="productQuantity">
+        <button (click)="onQuantityClicked()">ok</button>
+    </div>
+</div>

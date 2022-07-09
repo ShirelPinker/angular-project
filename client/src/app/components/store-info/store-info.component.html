@@ -1,0 +1,10 @@
+<div class="storeInfoContainer">
+    <img class="storeInfoImg" src="https://cdn.shopify.com/s/files/1/2339/6447/files/skincaresml_600x.jpg?v=1507173103">
+    <div class="storeInfoParagraph">
+        <div> availabe products in our store: {{productsCount}}</div>
+        <div> Number of orders submitted in our store: {{ordersCount}}</div>
+
+    </div>
+    <app-logged-in-notification *ngIf="isLoggedInCustomer"></app-logged-in-notification>
+
+</div>

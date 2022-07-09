@@ -1,0 +1,7 @@
+todos:
+1. products component should load to products array the returned value from two sources (search / categories) - study rxjs to solve!
+2. add token to header (using interceptor ?)
+3. forms validation (probably using reactive forms)
+4. logged-in-notification (and maybe more components) are doing more than one subscribe - fix to one subscribe onInit as state
+5. unsubscribe in all places where we subscribe to state (subjects that never die)
+
