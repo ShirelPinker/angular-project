@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
@@ -16,7 +16,7 @@ import { AvailableDeliveyDateValidator } from 'src/app/validators/AvailableDeliv
 })
 export class CheckoutFormComponent implements OnInit {
   cities = ['Tel Aviv', 'Jerusalem', 'Ramat Gan', 'Haifa', 'Rishon Letzion', 'Petach Tikva', 'Ashdod', 'Natanya', 'Beer Sheva', 'Bnei Brak']
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   loggedInUserId: number;
   loggedInUserCity: string;
   loggedInUserStreet: string;
@@ -39,15 +39,15 @@ export class CheckoutFormComponent implements OnInit {
       })
 
 
-    this.signupForm = new FormGroup({
-      'city': new FormControl(null, Validators.required),
-      'street': new FormControl(null, Validators.required),
-      'deliveryDate': new FormControl(null, {
+    this.signupForm = new UntypedFormGroup({
+      'city': new UntypedFormControl(null, Validators.required),
+      'street': new UntypedFormControl(null, Validators.required),
+      'deliveryDate': new UntypedFormControl(null, {
         validators: Validators.required,
         asyncValidators: [this.availabeDeliveryDate.validate.bind(this.availabeDeliveryDate)],
         updateOn: 'blur'
       }),
-      'creditCard': new FormControl(null, {
+      'creditCard': new UntypedFormControl(null, {
         validators: [Validators.required, caredidCardValidator()],
         updateOn: 'blur'
       })

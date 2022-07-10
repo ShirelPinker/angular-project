@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register2-page',
@@ -9,18 +9,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class Register2PageComponent implements OnInit {
   cities = ['Tel Aviv', 'Jerusalem', 'Ramat Gan', 'Haifa', 'Rishon Letzion', 'Petach Tikva', 'Ashdod', 'Natanya', 'Beer Sheva', 'Bnei Brak']
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   @Output() register2Details = new EventEmitter();
 
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup({
-      'city': new FormControl(null, Validators.required),
-      'street': new FormControl(null, Validators.required),
-      'firstName': new FormControl(null, Validators.required),
-      'lastName': new FormControl(null, Validators.required)
+    this.signupForm = new UntypedFormGroup({
+      'city': new UntypedFormControl(null, Validators.required),
+      'street': new UntypedFormControl(null, Validators.required),
+      'firstName': new UntypedFormControl(null, Validators.required),
+      'lastName': new UntypedFormControl(null, Validators.required)
     })
   }
   onSubmitClicked() {

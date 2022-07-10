@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UniqueEmailValidator } from 'src/app/validators/UniqueEmailValidator';
 import { UniqueGovernmentIdValidator } from 'src/app/validators/UniqueGovernmentIdValidator';
 
@@ -10,29 +10,29 @@ import { UniqueGovernmentIdValidator } from 'src/app/validators/UniqueGovernment
 })
 
 export class Register1PageComponent implements OnInit {
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   @Output() register1Details = new EventEmitter();
 
   constructor(private uniqueEmail: UniqueEmailValidator, private uniqueGovernmentId: UniqueGovernmentIdValidator) { }
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup({
-      'governmentId': new FormControl(null, {
+    this.signupForm = new UntypedFormGroup({
+      'governmentId': new UntypedFormControl(null, {
         validators: [Validators.required, validGovernmentId()],
         asyncValidators: [this.uniqueGovernmentId.validate.bind(this.uniqueGovernmentId)],
         updateOn: 'blur'
       }),
-      'email': new FormControl(null, {
+      'email': new UntypedFormControl(null, {
         validators: [Validators.required, Validators.email],
         asyncValidators: [this.uniqueEmail.validate.bind(this.uniqueEmail)],
         updateOn: 'blur'
       }),
-      'passwordsFeilds': new FormGroup({
-        'password': new FormControl(null, {
+      'passwordsFeilds': new UntypedFormGroup({
+        'password': new UntypedFormControl(null, {
           validators: Validators.required,
           updateOn: 'blur'
         }),
-        'confirmedPassword': new FormControl(null, {
+        'confirmedPassword': new UntypedFormControl(null, {
           validators: Validators.required,
           updateOn: 'blur'
         })

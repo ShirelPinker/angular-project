@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -22,7 +22,7 @@ enum AdminStatus {
   styleUrls: ['./admin-management.component.css']
 })
 export class AdminManagementComponent implements OnInit {
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   adminAction: AdminAction = AdminAction.Add;
   categories: Category[] = [];
   productToEditId: number;
@@ -35,20 +35,20 @@ export class AdminManagementComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories)
 
-    this.signupForm = new FormGroup({
-      'name': new FormControl(null, {
+    this.signupForm = new UntypedFormGroup({
+      'name': new UntypedFormControl(null, {
         validators: [Validators.required],
         updateOn: 'blur'
       }),
-      'category': new FormControl(null, {
+      'category': new UntypedFormControl(null, {
         validators: [Validators.required],
         updateOn: 'blur'
       }),
-      'price': new FormControl(null, {
+      'price': new UntypedFormControl(null, {
         validators: [Validators.required],
         updateOn: 'blur'
       }),
-      'imgUrl': new FormControl(null, {
+      'imgUrl': new UntypedFormControl(null, {
         validators: [Validators.required],
         updateOn: 'blur'
       })

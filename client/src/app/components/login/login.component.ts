@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  signupForm: FormGroup;
+  signupForm: UntypedFormGroup;
   isLoggedInCustomer: boolean = false;
 
   constructor(private loginStateService:LoginStateService, private customersService:CustomersService, private router: Router) { }
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
         this.isLoggedInCustomer = true;
       }
     })
-    this.signupForm = new FormGroup({
-      'email': new FormControl('s@gmail.com', Validators.required),
-      'password': new FormControl('1234567', Validators.required),
+    this.signupForm = new UntypedFormGroup({
+      'email': new UntypedFormControl('s@gmail.com', Validators.required),
+      'password': new UntypedFormControl('1234567', Validators.required),
       })
   }
 
