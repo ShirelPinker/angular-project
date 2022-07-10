@@ -1,6 +1,10 @@
-<div class="search">
-    <input (keydown.enter)="searchProduct()" type="text" [(ngModel)]="searchWord">
-    <button class="serachBtn" (click)="searchProduct()">search</button>
+<div class="nav">
+    <div class="searchContainer"> <input (keydown.enter)="searchProduct()" type="text" [(ngModel)]="searchWord">
+        <button class="serachBtn" (click)="searchProduct()">search</button>
+    </div>
+
+    <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
+    </app-categories>
 </div>
 
 <div class="mainContainer">
@@ -9,8 +13,7 @@
         <app-admin-management *ngIf="mode=='admin'"></app-admin-management>
     </div>
     <div class="storeContainer">
-        <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
-        </app-categories>
+
         <app-products class="productsContainer"></app-products>
     </div>
 </div>

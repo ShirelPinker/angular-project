@@ -1,0 +1,8 @@
+.products-container{
+    display: flex;
+    /* margin: 20px; */
+}
+
+.product-card{
+    display:inline-block
+}

@@ -2,10 +2,24 @@
     display: flex;
     justify-content: space-between;
     margin: 10px;
+    padding: 20px;
+}
+
+.logoContainer{
+    display: flex;
+    align-items: baseline;
+}
+.logoName{
+    font-size: 20px;
+    font-family: cursive;
+    color: cadetblue;
+    font-style: italic;
+
 }
 .headerImg{
-    width: 200px;
+    width: 100px;
 }
 .introduction{
     color:rgb(149, 110, 184);
+    font-size: 15px;
 }

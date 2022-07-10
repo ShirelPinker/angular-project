@@ -1,10 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap, map, Observable, of, switchMap } from 'rxjs';
 import { CartItem } from 'src/app/models/cartItem';
-import { ReceiptService } from 'src/app/services/receipt.service';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-receipt-page',
@@ -13,22 +11,28 @@ import { CartStateService } from 'src/app/services/states/cart-state.service';
 })
 export class ReceiptPageComponent implements OnInit {
 
-  constructor(private router: Router, private cartStateService: CartStateService, private receiptService: ReceiptService) { }
+  constructor(private router: Router, private cartStateService: CartStateService) { }
   receiptItems: CartItem[] = [];
-  receiptId: number;
+
   ngOnInit(): void {
-    this.cartStateService.getCartState().pipe(
-      tap((cartState) => this.receiptItems = cartState.cartItems),
-      tap(() => this.receiptService.createReceipt(this.receiptItems).subscribe(
-        id => this.receiptId = id
-      ))
-    )
+    this.cartStateService.getCartState().subscribe((cartState) => this.receiptItems = cartState.cartItems)   
   }
 
   onDownloadReceipt() {
-    this.receiptService.getReceipt(this.receiptId).subscribe()
-
+    const id = Math.random().toString().replace('0.', '')
+    let str = '<h1> Receipt No. ' + id + '</h1>'
+    str+= '<ul>'
+    for (const item of this.receiptItems) {
+        const price = item.unitPrice * item.quantity
+        str += `<li>
+        ${item.productName} || ${price}$
+        </li>`
+    }
+    str+= '</ul> <br><br> <div>Thank you for buying!</div>'
+      const blob = new Blob([str], { type: 'text/html' });
+      saveAs(blob, `Receipt_${id}.html`);
   }
+  
 
   onOkClicked() {
     this.router.navigate(['/main'])

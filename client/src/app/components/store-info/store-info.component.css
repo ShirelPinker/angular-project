@@ -1,9 +1,23 @@
-.storeInfoImg {
-    width: 300px;
-    margin: auto;
-}
+
 
 .storeInfoContainer{
-    padding: 10px;
-    
+    background-color: #ffeee7;
+    height: 100%;
+    padding: 15px;
+
+}
+.storeInfoImg {
+    display: block;
+    width:85%;
+    margin: 20px auto;
+}
+
+.storeInfoParagraph{
+    padding: 15px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.customerNotification{
+    padding: 15px;
+
 }

@@ -1,7 +1,7 @@
 <div class="loginContainer">
 
     <app-go-to-shopping *ngIf="isLoggedInCustomer"></app-go-to-shopping>
-    <form [formGroup]="signupForm">
+    <form class="loginForm" [formGroup]="signupForm">
 
         <div class="form-group">
             <label for="email">email</label>
@@ -18,12 +18,12 @@
                 Please enter a valid password
             </span>
         </div>
-
+        <div class="actionBtnsContainer">
+            <button class="actionBtn" (click)="onLoginClicked()">Login</button>
+            <button class="actionBtn" (click)="onSignUpClicked()">signup</button>
+        </div>
 
     </form>
-    <div class="actionBtnsContainer">
-        <button class="actionBtn" (click)="onLoginClicked()">Login</button>
-        <button class="actionBtn" (click)="onSignUpClicked()">signup</button>
-    </div>
+  
 
 </div>

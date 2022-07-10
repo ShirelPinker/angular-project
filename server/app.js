@@ -6,7 +6,6 @@ const categoriesController = require("./controllers/categories-controller");
 const cartItemsController = require("./controllers/cartItems-controller");
 const cartsController = require("./controllers/carts-controller");
 const ordersController = require("./controllers/orders-controller");
-const receiptController = require("./controllers/receipt-controller");
 
 
 
@@ -21,7 +20,6 @@ server.use("/api/categories", categoriesController);
 server.use("/api/cartItems", cartItemsController);
 server.use("/api/carts", cartsController);
 server.use("/api/orders", ordersController);
-server.use("/api/receipt", receiptController);
 
 
 

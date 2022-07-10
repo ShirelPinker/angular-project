@@ -3,11 +3,17 @@ display: flex;
 }
 
 .category{
-    margin: 5px;
+    margin: 16px;
     font-family: cursive;
-    font-size: 24px;
+    font-size: 22px;
+
 }
 .selectedCategory{
     font-weight: bold;
-    background-color:aquamarine;
+    /* background-color:rgb(228, 168, 215); */
 }
+button {
+    all: unset;
+    cursor: pointer;
+  }
+  
