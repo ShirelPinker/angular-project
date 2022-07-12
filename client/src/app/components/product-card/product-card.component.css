@@ -1,8 +1,25 @@
-.productCard{
-    width:300px;
+.cardContainer {
     height: 300px;
+
 }
-.productImg{
-    width:200px;
-    height: 200px;
+
+.cardDetailsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.productImg {
+    width: 100%;
+    min-height: 404px;  
+     object-fit: contain;
+}
+
+.editBtn {
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.editBtn:hover {
+    cursor: pointer;
 }

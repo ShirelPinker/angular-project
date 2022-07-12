@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { CartItem } from 'src/app/models/cartItem';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { ActivatedRoute } from '@angular/router';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit, OnChanges {
+  faTrash = faTrashCan;
   mode;
   @Input() cartItem: CartItem;
   @Input() searchedText: string;
@@ -24,9 +26,9 @@ export class CartItemComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (!changes['cartItem']) return
     const cartItem :CartItem = changes['cartItem'].currentValue
     this.price = cartItem.unitPrice * cartItem.quantity;
-
   }
 
   onDeleteCartItemClicked() {

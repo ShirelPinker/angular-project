@@ -1,8 +1,11 @@
 <div class="cartItemContainer">
-    <button *ngIf="mode=='store'" (click)="onDeleteCartItemClicked()">x</button>
-    <div [innerHtml]="productName | highlighter:searchedText" ></div>
+
+  <img src={{cartItem.productImgUrl}} class="img-thumbnail">
+  <div class="itemDetails">
+    <div [innerHtml]="productName | highlighter:searchedText"></div>
     <div>Quantity: {{cartItem.quantity}}</div>
-    <div>Total price: {{price}}</div>
-    <img src={{cartItem.productImgUrl}} class="cartItemImg" >
-  
-    </div>
+    <div>Price: {{price}}</div>
+  </div>
+  <fa-icon class="deleteItemBtn" *ngIf="mode=='store'" (click)="onDeleteCartItemClicked()" [icon]="faTrash"></fa-icon>
+
+</div>

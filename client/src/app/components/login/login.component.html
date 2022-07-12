@@ -1,7 +1,8 @@
 <div class="loginContainer">
 
-    <app-go-to-shopping *ngIf="isLoggedInCustomer"></app-go-to-shopping>
-    <form class="loginForm" [formGroup]="signupForm">
+    <app-go-to-shopping class="goToShopComponent" *ngIf="isLoggedInCustomer"></app-go-to-shopping>
+
+    <form *ngIf="!isLoggedInCustomer" class="loginForm" [formGroup]="signupForm">
 
         <div >
             <label for="email">Email Address</label>

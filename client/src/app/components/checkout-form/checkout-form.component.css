@@ -1,16 +1,21 @@
-input.ng-invalid.ng-touched{
+input.ng-invalid.ng-touched {
     border: 1px solid red
 }
 
-.formContainer{
+.formContainer {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap:30px
+    gap: 30px
 }
 
 
-.subForm{
+.subForm {
     display: flex;
     flex-direction: column;
-    gap:10px
+    gap: 10px
+}
+
+.subFormTitle {
+    font-size: 20px;
 }

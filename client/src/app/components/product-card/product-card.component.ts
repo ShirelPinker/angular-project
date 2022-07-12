@@ -7,6 +7,7 @@ import { CartItem } from 'src/app/models/cartItem';
 import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-card',
@@ -21,6 +22,8 @@ export class ProductCardComponent implements OnInit {
   productQuantity: number;
   cartId: number;
   cartItemId: number | null
+  faPencil = faPencil;
+  
   constructor(private productsStateService: ProductsStateService, private loginStateService: LoginStateService, private cartStateService: CartStateService, private cartItemsService: CartItemsService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {

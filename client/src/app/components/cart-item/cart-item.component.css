@@ -1,14 +1,17 @@
 .cartItemContainer{
+    display:flex ;
     width:90%;
     height:200px;
     padding: 10px;
-    margin: 7px;
-
+gap: 10px;
+}
+.itemDetails{
+    display: flex;
+    flex-direction: column;
 }
 
-.cartItemImg{
-    width:100px;
-    height:100px;
+.deleteItemBtn:hover{
+    cursor: pointer;
 }
 
 ::ng-deep .highlighted-text{

@@ -5,24 +5,22 @@
 }
 
 .sideBar {
-    width: 25%;
-    border: 1px solid rgb(125, 158, 184);
+    width: 28%;
+    border-top: 1px solid rgb(125, 158, 184);
     padding: 10px;
-    margin: 10px;
 
 }
 
 .storeContainer {
     width: 71%;
-    border: 1px solid rgb(125, 158, 184);
-    padding: 10px;
-    margin: 10px;
+    border-left: 1px solid rgb(125, 158, 184);
+    border-top: 1px solid rgb(125, 158, 184);
+    padding: 20px;
 }
 
 .shoppingHeader{
     display: flex;
     margin: 25px;
-    /* justify-content: space-between; */
     align-items: center;
 }
 .categoriesNav{

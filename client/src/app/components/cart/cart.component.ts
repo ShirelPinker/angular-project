@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   mode;
   cartItems$: Observable<CartItem[]> = of([]);
   totalPrice: number;
-  cartId:number;
+  cartId: number;
   constructor(private cartItemsService: CartItemsService, private router: Router, private cartStateService: CartStateService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
       filter((cartState: CartState) => cartState != null),
       tap((cartState: CartState) => { this.cartId = cartState.cart.id }),
       map((cartState: CartState) => cartState.cartItems))
-      
+
     this.cartItems$.subscribe(cartItems => {
       this.totalPrice = 0;
       for (let item of cartItems) {

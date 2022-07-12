@@ -8,7 +8,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { AvailableDeliveyDateValidator } from 'src/app/validators/AvailableDeliveyDateValidator';
-import { faCreditCard, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-form',

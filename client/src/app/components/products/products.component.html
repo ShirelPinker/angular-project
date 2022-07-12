@@ -1,2 +1,4 @@
-<div class="products-container"></div>
-<app-product-card class="product-card" *ngFor="let product of (products$ | async)" [productItem]="product" ></app-product-card>
+<div class="products-container">
+<app-product-card class="productCard" *ngFor="let product of (products$ | async)" [productItem]="product" ></app-product-card>
+
+</div>

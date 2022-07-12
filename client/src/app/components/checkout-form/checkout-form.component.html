@@ -1,6 +1,6 @@
 <form class="formContainer" [formGroup]="checkoutForm">
     <div class="subForm">
-        <div>shipping details</div>
+        <div class="subFormTitle">shipping details</div>
         <div>
             <label for="city">city</label>
             <select class="form-select" (dblclick)="ondblclickCity()" formControlName="city">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="subForm">
-        <div>Payments <fa-icon [icon]="faCreditCard"></fa-icon>
+        <div class="subFormTitle">Payments <fa-icon [icon]="faCreditCard"></fa-icon>
         </div>
         <div>
             <label for="creditCard">Credit Card</label>

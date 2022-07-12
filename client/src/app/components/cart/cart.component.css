@@ -3,11 +3,9 @@
     flex-direction: column;
 }
 
-.cartItemsContainer{
-    height: 80%;
-
-}
 
 .actionBtnsContainer{
-    height: 10%
+    display: flex;
+    justify-content: space-between;
+  
 }

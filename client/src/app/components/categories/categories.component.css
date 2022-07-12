@@ -6,12 +6,12 @@ display: flex;
     margin: 16px;
     font-family: cursive;
     font-size: 22px;
-
+    color: #6b7176;
 }
 .selectedCategory{
-    font-weight: bold;
-    /* background-color:rgb(228, 168, 215); */
+color: #333536; 
 }
+
 button {
     all: unset;
     cursor: pointer;

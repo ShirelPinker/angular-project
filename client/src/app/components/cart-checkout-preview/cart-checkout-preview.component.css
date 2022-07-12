@@ -1,3 +1,9 @@
+.cartPreviewContainer{
+ display: flex;
+ flex-direction: column;   
+ padding: 10px;
+}
+
 .cartHeader{
     display: flex;
     justify-content: space-between;
@@ -10,4 +16,19 @@
 .cartHeaderTitle{
     font-size: 26px;
     font-family: inherit;
+}
+
+.backBtn{
+    color: rgb(101, 101, 110);
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+
+.cartPreviewFooter{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+
 }

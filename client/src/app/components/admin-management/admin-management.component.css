@@ -1,0 +1,19 @@
+.adminContainer{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+.addProductBtn{
+    margin: auto;
+}
+
+.actionBtns{
+    margin-top:15px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+
+
+}

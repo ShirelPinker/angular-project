@@ -8,6 +8,9 @@
 
 .loginForm {
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
 
 }
 
@@ -18,8 +21,6 @@
     margin: 20px auto;
 
 }
-
-
 
 input.ng-invalid.ng-touched {
     border: 1px solid red
@@ -35,4 +36,7 @@ input.ng-invalid.ng-touched {
 
 .errorMsg{
     font-size: 13px;
+}
+.goToShopComponent{
+    margin: auto;
 }
