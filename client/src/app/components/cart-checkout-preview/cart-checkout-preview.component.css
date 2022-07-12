@@ -1,0 +1,13 @@
+.cartHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchContainer{
+    width: 40%;
+}
+
+.cartHeaderTitle{
+    font-size: 26px;
+    font-family: inherit;
+}

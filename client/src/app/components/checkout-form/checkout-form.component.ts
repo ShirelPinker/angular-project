@@ -8,6 +8,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { AvailableDeliveyDateValidator } from 'src/app/validators/AvailableDeliveyDateValidator';
+import { faCreditCard, faTruck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-form',
@@ -16,12 +17,14 @@ import { AvailableDeliveyDateValidator } from 'src/app/validators/AvailableDeliv
 })
 export class CheckoutFormComponent implements OnInit {
   cities = ['Tel Aviv', 'Jerusalem', 'Ramat Gan', 'Haifa', 'Rishon Letzion', 'Petach Tikva', 'Ashdod', 'Natanya', 'Beer Sheva', 'Bnei Brak']
-  signupForm: UntypedFormGroup;
+  checkoutForm: UntypedFormGroup;
   loggedInUserId: number;
   loggedInUserCity: string;
   loggedInUserStreet: string;
   //cahnge to customer
-  cartId;
+  cartId:number;
+  faCreditCard= faCreditCard;
+ 
   constructor(private cartService: CartService, private ordersService: OrdersService, private cartStateService: CartStateService, private loginStateService: LoginStateService, private router: Router, private availabeDeliveryDate: AvailableDeliveyDateValidator, private customersService: CustomersService) { }
 
   ngOnInit(): void {
@@ -39,7 +42,7 @@ export class CheckoutFormComponent implements OnInit {
       })
 
 
-    this.signupForm = new UntypedFormGroup({
+    this.checkoutForm = new UntypedFormGroup({
       'city': new UntypedFormControl(null, Validators.required),
       'street': new UntypedFormControl(null, Validators.required),
       'deliveryDate': new UntypedFormControl(null, {
@@ -55,13 +58,13 @@ export class CheckoutFormComponent implements OnInit {
   }
 
   onOrderClicked() {
-    const ccLastFourDigit= (this.signupForm.value.creditCard).slice(-4)
+    const ccLastFourDigit= (this.checkoutForm.value.creditCard).slice(-4)
     const orderDetails = {
       customerId: this.loggedInUserId,
       cartId: this.cartId,
-      deliveryCity: this.signupForm.value.city,
-      deliveryStreet: this.signupForm.value.street,
-      deliveryDate: this.signupForm.value.deliveryDate,
+      deliveryCity: this.checkoutForm.value.city,
+      deliveryStreet: this.checkoutForm.value.street,
+      deliveryDate: this.checkoutForm.value.deliveryDate,
       creditCard: ccLastFourDigit,
     }
     this.ordersService.addOrder(orderDetails).pipe(
@@ -80,11 +83,11 @@ export class CheckoutFormComponent implements OnInit {
       }
     }
 
-    this.signupForm.controls['city'].setValue(this.cities[cityIndex]);
+    this.checkoutForm.controls['city'].setValue(this.cities[cityIndex]);
   }
 
   ondblclickStreet() {
-    this.signupForm.controls['street'].setValue(this.loggedInUserStreet)
+    this.checkoutForm.controls['street'].setValue(this.loggedInUserStreet)
   }
 
 

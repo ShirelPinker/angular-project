@@ -5,18 +5,34 @@
     background-color: #ffeee7;
     height: 100%;
 }
-.loginForm{
+
+.loginForm {
     margin: auto;
 
 }
-.actionBtnsContainer{
 
-    margin:10px auto;
-}
-.actionBtn {
-    width: 60%;
+.actionBtnsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px auto;
+
 }
 
-input.ng-invalid.ng-touched{
+
+
+input.ng-invalid.ng-touched {
     border: 1px solid red
+}
+
+.sighUpBtn {
+    color: blue;
+    text-decoration: underline;
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.errorMsg{
+    font-size: 13px;
 }

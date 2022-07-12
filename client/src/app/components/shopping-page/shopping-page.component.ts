@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-page',
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./shopping-page.component.css']
 })
 export class ShoppingPageComponent implements OnInit {
+  faSearch= faSearch;
   mode;
   searchWord: string;
   activeCategory: number;

@@ -1,44 +1,51 @@
-<form [formGroup]="signupForm">
-    <div>shipping details</div>
-    <div class="form-group">
-        <label for="city">city</label>
-        <select (dblclick)="ondblclickCity()" formControlName="city">
-            <option *ngFor="let city of cities" [ngValue]="city">
-                {{ city }}
-            </option>
-        </select>
-        <span *ngIf="signupForm.get('city').status=='INVALID' &&  signupForm.get('city').touched">
-            Please choose a city
-        </span>
+<form class="formContainer" [formGroup]="checkoutForm">
+    <div class="subForm">
+        <div>shipping details</div>
+        <div>
+            <label for="city">city</label>
+            <select class="form-select" (dblclick)="ondblclickCity()" formControlName="city">
+                <option *ngFor="let city of cities" [ngValue]="city">
+                    {{ city }}
+                </option>
+            </select>
+            <span *ngIf="checkoutForm.get('city').status=='INVALID' &&  checkoutForm.get('city').touched">
+                Please choose a city
+            </span>
+        </div>
+
+        <div>
+            <label for="street">Street</label>
+            <input (dblclick)="ondblclickStreet()" type="text" id="street" formControlName="street"
+                class="form-control">
+            <span *ngIf="checkoutForm.get('street').status=='INVALID'  &&  checkoutForm.get('street').touched">
+                Please enter a valid street
+            </span>
+        </div>
+
+        <div>
+            <label for="deliveryDate">deliveryDate</label>
+            <input type="date" id="deliveryDate" formControlName="deliveryDate" class="form-control">
+            <span *ngIf="checkoutForm.get('deliveryDate').status=='INVALID' &&  checkoutForm.get('deliveryDate').touched">
+                Please enter a valid shipping date
+            </span>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="street">Street</label>
-        <input (dblclick)="ondblclickStreet()" type="text" id="street" formControlName="street" class="form-control">
-        <span *ngIf="signupForm.get('street').status=='INVALID'  &&  signupForm.get('street').touched">
-            Please enter a valid street
-        </span>
-    </div>
+    <div class="subForm">
+        <div>Payments <fa-icon [icon]="faCreditCard"></fa-icon>
+        </div>
+        <div>
+            <label for="creditCard">Credit Card</label>
+            <input type="text" id="creditCard" formControlName="creditCard" class="form-control">
+            <span *ngIf="checkoutForm.get('creditCard').status=='INVALID' &&  checkoutForm.get('creditCard').touched">
+                Please enter a valid creditCard
+            </span>
+        </div>
 
-    <div class="form-group">
-        <label for="deliveryDate">deliveryDate</label>
-        <input type="date" id="deliveryDate" formControlName="deliveryDate" class="form-control">
-        <span *ngIf="signupForm.get('deliveryDate').status=='INVALID' &&  signupForm.get('deliveryDate').touched">
-            Please enter a valid shippingDate
-        </span>
-    </div>
-
-    <div>Payments:</div>
-    <div class="form-group">
-        <label for="creditCard">creditCard</label>
-        <input type="text" id="creditCard" formControlName="creditCard" class="form-control">
-        <span *ngIf="signupForm.get('creditCard').status=='INVALID' &&  signupForm.get('creditCard').touched">
-            Please enter a valid creditCard
-        </span>
     </div>
 
 
 
-    <button (click)="onOrderClicked()">order</button>
+    <button class="btn btn-primary" [disabled]="!checkoutForm.valid" (click)="onOrderClicked()">order</button>
 
 </form>

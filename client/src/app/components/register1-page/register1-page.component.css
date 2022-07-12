@@ -4,12 +4,28 @@
     width:50%;
     margin:auto;
     justify-content: center;
+    gap:10px;
 }
 
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
+
+.passwordsFeilds{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
 .nextBtn{
     margin: auto;
 }
 
 input.ng-invalid.ng-touched{
     border: 1px solid red
+}
+
+.errorMsg{
+    font-size: 13px;
 }

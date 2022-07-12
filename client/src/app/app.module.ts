@@ -26,6 +26,7 @@ import { CartCheckoutPreviewComponent } from './components/cart-checkout-preview
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { HighlighterPipe } from './pipes/highlighter.pipe';
 import { AdminManagementComponent } from './components/admin-management/admin-management.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AdminManagementComponent } from './components/admin-management/admin-ma
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
     ],
   providers: [],
   bootstrap: [AppComponent]

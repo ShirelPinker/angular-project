@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
       }
     })
     this.signupForm = new UntypedFormGroup({
-      'email': new UntypedFormControl('s@gmail.com', Validators.required),
-      'password': new UntypedFormControl('1234567', Validators.required),
+      'email': new UntypedFormControl(null, Validators.required),
+      'password': new UntypedFormControl(null, Validators.required),
       })
   }
 

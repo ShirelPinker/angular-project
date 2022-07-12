@@ -1,7 +1,19 @@
-<div>My Cart</div>
-<button (click)="onBackClicked()" class="backToStoreBtn">Back</button>
-<div class="search">
-  search:  <input type="text" [(ngModel)]="searchedText">
+<div class="cartHeader">
+  <div class="cartHeaderTitle">Shopping Cart <fa-icon [icon]="faShoppingCart"></fa-icon></div>
+
+
+  <div class="input-group searchContainer">
+    <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search"
+      [(ngModel)]="searchedText">
+    <!-- <span class="input-group-append">
+        <button class="btn rounded-pill border-0 ml-n5" (click)="searchProduct()" type="button">
+            <fa-icon [icon]="faSearch"></fa-icon>
+        </button>
+    </span> -->
+  </div>
 </div>
+
+
 <app-cart [searchedText]="searchedText"></app-cart>
 <div>No Changes Permitted Here</div>
+<div><button (click)="onBackClicked()" class="backToStoreBtn">Back to shop</button></div>

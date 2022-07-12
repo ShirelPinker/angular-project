@@ -1,3 +1,16 @@
 input.ng-invalid.ng-touched{
     border: 1px solid red
 }
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap:30px
+}
+
+
+.subForm{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}

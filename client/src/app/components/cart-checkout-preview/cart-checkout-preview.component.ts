@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart-checkout-preview',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CartCheckoutPreviewComponent implements OnInit {
   searchedText: string;
-
+  faShoppingCart= faShoppingCart;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
