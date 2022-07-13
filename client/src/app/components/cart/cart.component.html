@@ -1,12 +1,25 @@
-<div class="cartContainer"></div>
-<div class="cartItemsContainer">
-    <app-cart-item [searchedText]="searchedText" *ngFor="let cartItem of (cartItems$ | async)" [cartItem]="cartItem">
-    </app-cart-item>
-</div>
-<div> total price: {{totalPrice}}</div>
-<div class="actionBtnsContainer">
-    <button class="btn btn-light" *ngIf="mode=='store'" (click)="onEmptyCartClicked()">Empty Cart</button>
+<div class="cartContainer">
 
-    <button class="btn btn-primary" *ngIf="mode=='store'" (click)="onCheckoutClicked()">Checkout</button>
+    <div *ngIf="mode=='store'" class="cartHeader">
+        <div class="cartHeaderTitle">Shopping Cart <fa-icon [icon]="faShoppingCart"></fa-icon>
+        </div>
+        <button type="button" class="btn btn-light"  (click)="onEmptyCartClicked()">Empty Cart</button>
+    </div>
+
+
+
+    <div class="cartItemsContainer">
+        <app-cart-item [searchedText]="searchedText" *ngFor="let cartItem of (cartItems$ | async)"
+            [cartItem]="cartItem">
+        </app-cart-item>
+    </div>
+
+
+
+    <div class="activeCartFooter">
+        <div class="cartPrice"> Total Price: {{totalPrice}}</div>
+        <button class="btn btn-primary" *ngIf="mode=='store'" (click)="onCheckoutClicked()">Checkout</button>
+
+    </div>
 
 </div>

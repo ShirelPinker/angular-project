@@ -37,19 +37,23 @@
 
 .quantityField{
     position: absolute;
-    top: 4%;
-    left: 12%;
+    bottom: 7%;
+    left: 34%;
+    width: 120px;
 }
 
 .modalImg{
     position: relative;
     height: 472px;
-    width: 412px;
+    width: 398px;
 }
-
 
 
 ::ng-deep .modal-dialog{
     max-width: 412px !important;;
     width: 400px !important;
   }
+
+.hoverImg:hover{
+    cursor: pointer;
+}

@@ -7,8 +7,8 @@ import { CartItem } from 'src/app/models/cartItem';
 import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-product-card',
@@ -55,16 +55,13 @@ export class ProductCardComponent implements OnInit {
 
         )
       }
-    }
-
-
-    )
+    })
   }
 
   onQuantityClicked() {
     this.modalRef.hide()
-    
-    if(this.productQuantity<=0){
+
+    if (this.productQuantity <= 0) {
       return
     }
     if (!this.cartItemId) {
@@ -87,4 +84,6 @@ export class ProductCardComponent implements OnInit {
     if (this.mode != 'store') return
     this.modalRef = this.modalService.show(modalTemplate);
   }
+
+
 }

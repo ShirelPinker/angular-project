@@ -1,19 +1,21 @@
 <div class="card cardContainer">
-    <div class="img" (click)="onOpenModal(modalTemplate)">
+    <div [class.hoverImg] = "mode=='store'" class="img" (click)="onOpenModal(modalTemplate)">
         <fa-icon class="editBtn" (click)="onEditClicked()" *ngIf="mode=='admin'" [icon]="faPencil"></fa-icon>
         <img class="card-img-top productImg" src={{productItem.imgUrl}}><br>
     </div>
     <div class="cardDetailsContainer">
         <div class="card-title">{{productItem.name}}</div>
-        <div>price: {{productItem.price}}</div>
+        <div>Price: {{productItem.price}}</div>
     </div>
 
 
     <ng-template #modalTemplate>
         <div><img class="modalImg" src={{productItem.imgUrl}}><br>
-
-            <div class="quantityField"> quantity<input type="number" [(ngModel)]="productQuantity">
-                <button (click)="onQuantityClicked()">ok</button>
+            <div class="quantityField input-group">
+                <input type="number" class="form-control" [(ngModel)]="productQuantity" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button (click)="onQuantityClicked()" class="btn btn-primary" type="button">ok</button>
+                </div>
             </div>
         </div>
 

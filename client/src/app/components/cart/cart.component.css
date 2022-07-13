@@ -1,11 +1,23 @@
 .cartContainer{
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 
-.actionBtnsContainer{
+.activeCartFooter{
     display: flex;
     justify-content: space-between;
+    align-items: center;
   
+}
+
+.cartPrice{
+    font-size: 22px;
+}
+
+.cartHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
