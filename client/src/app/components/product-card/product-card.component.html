@@ -11,8 +11,9 @@
 
     <ng-template #modalTemplate>
         <div><img class="modalImg" src={{productItem.imgUrl}}><br>
+        <div class="modalTitle">{{productItem.name}}</div>
             <div class="quantityField input-group">
-                <input type="number" class="form-control" [(ngModel)]="productQuantity" aria-describedby="basic-addon2">
+                <input type="number" class="form-control quantityInput" [(ngModel)]="productQuantity" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button (click)="onQuantityClicked()" class="btn btn-primary" type="button">ok</button>
                 </div>

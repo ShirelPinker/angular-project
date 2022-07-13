@@ -13,8 +13,8 @@
 }
 
 .productImg {
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .editBtn {
@@ -30,30 +30,44 @@
     cursor: pointer;
 }
 
-.img{
-    height:90%;
+.img {
+    height: 90%;
     position: relative;
 }
 
-.quantityField{
+.quantityField {
     position: absolute;
     bottom: 7%;
     left: 34%;
     width: 120px;
 }
 
-.modalImg{
+.quantityInput {
+    background: #e7e6e6f2;
+
+}
+
+.modalImg {
     position: relative;
     height: 472px;
     width: 398px;
 }
 
 
-::ng-deep .modal-dialog{
-    max-width: 412px !important;;
+::ng-deep .modal-dialog {
+    max-width: 412px !important;
+    ;
     width: 400px !important;
-  }
+}
 
-.hoverImg:hover{
+.hoverImg:hover {
     cursor: pointer;
+    opacity: 0.8;
+}
+
+.modalTitle {
+    position: absolute;
+    margin: auto;
+    top: 5px;
+
 }

@@ -1,10 +1,14 @@
 .register2Container{
-    display:flex;
+    display: flex;
     flex-direction: column;
-    width:50%;
-    margin:auto;
+    width: 50%;
+    margin: 50px auto;
     justify-content: center;
-    gap:10px;
+    gap: 10px;
+    align-items: center;
+    border-radius: 15px;
+    background-color: rgb(142 196 231 / 13%);
+    padding: 48px;
 }
 .formContainer{
     display: flex;

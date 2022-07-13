@@ -17,7 +17,7 @@
             <input type="text" id="email" formControlName="email" class="form-control" placeholder="your@example.com">
             <span class="errorMsg"
                 *ngIf="signupForm.get('email').status=='INVALID'  &&  signupForm.get('email').touched">
-                Please enter a valid email status
+                Please enter a valid email
             </span>
         </div>
 
@@ -38,13 +38,13 @@
                     placeholder="Confirm your password">
                 <span class="errorMsg"
                     *ngIf="!signupForm.get('passwordsFeilds.confirmedPassword').valid &&  signupForm.get('passwordsFeilds.confirmedPassword').touched">
-                    Please enter a valid confirmedPassword
+                    Please enter a valid confirmed Password
                 </span>
             </div>
 
             <span class="errorMsg"
                 *ngIf="!signupForm.get('passwordsFeilds').valid &&  signupForm.get('passwordsFeilds').touched">
-                Please enter a valid confirmedPassword
+                Passwords do not match
             </span>
         </div>
 

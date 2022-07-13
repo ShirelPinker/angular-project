@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 })
 export class HeaderComponent implements OnInit {
   introductionName: String;
-
+  faSeedling= faSeedling;
   constructor(private loginStateService:LoginStateService) { }
 
   ngOnInit(): void {

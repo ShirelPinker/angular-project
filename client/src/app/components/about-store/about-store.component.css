@@ -1,21 +1,20 @@
 
 .aboutContainer{
-    /* height: 100%; */
     background-color: #fff7f4;;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-h1{
+.aboutQoute{
     font-family: auto;
-    color: #77717ef0;;
+    color: #77717ef0;
+    padding: 11px;
     font-size: 35px;
-    /* padding: 20px 20px 0 20px; */
 }
 .aboutParagraph{
     padding:0 15px;
-    font-family: cursive;
-    font-size: 21px;
+    font-family: inherit;
+    font-size: 20px;
     color: darkslategray;
 
 }

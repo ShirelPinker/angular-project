@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cartItem';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
 import {saveAs} from 'file-saver';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-receipt-page',
@@ -13,6 +15,8 @@ export class ReceiptPageComponent implements OnInit {
 
   constructor(private router: Router, private cartStateService: CartStateService) { }
   receiptItems: CartItem[] = [];
+  faHeart = faHeart;
+  faSeedling=faSeedling;
 
   ngOnInit(): void {
     this.cartStateService.getCartState().subscribe((cartState) => this.receiptItems = cartState.cartItems)   

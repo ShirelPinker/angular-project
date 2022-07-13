@@ -1,9 +1,15 @@
-<div class="receiptContainer" >
-    <img class="receiptPageImg" src="https://cdn-yotpo-images-production.yotpo.com/instagram/45/17863624255881045/standard_resolution.jpg">
+<div class="receiptContainer">
+    <div class="receiptTitle">Your order is complete!</div>
+    <img class="receiptPageImg"
+        src="https://cdn-yotpo-images-production.yotpo.com/instagram/45/17863624255881045/standard_resolution.jpg">
 
-    <div>Your order is complete</div>
-    <button class="btn btn-outline-primary" (click)="onDownloadReceipt()">Download Your Receipt Here</button>
+    <div class="thankYouMsg">
+
+        <div>Thank you for buying at Plants <fa-icon [icon]="faSeedling"></fa-icon></div>
+        <!-- <fa-icon [icon]="faHeart"></fa-icon> -->
+    </div>
+
+    <button class="downloadReciect" (click)="onDownloadReceipt()">Download Your Receipt Here</button>
 
     <button class="btn btn-outline-primary" (click)="onOkClicked()">OK</button>
 </div>
-
