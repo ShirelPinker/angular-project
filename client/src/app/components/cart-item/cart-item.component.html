@@ -1,6 +1,6 @@
 <div class="cartItemContainer">
 
-  <img src={{cartItem.productImgUrl}} class="img-thumbnail">
+  <img src={{cartItem.productImgUrl}} class="img-thumbnail itemImage">
   <div class="itemDetails">
     <div [innerHtml]="productName | highlighter:searchedText"></div>
     <div>Quantity: {{cartItem.quantity}}</div>

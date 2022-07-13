@@ -14,18 +14,17 @@
         </span> -->
     </div>
 
-  
 
-    <app-categories class="categoriesNav" [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
+    <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
     </app-categories>
 </div>
 
 <div class="mainContainer">
     <div class="sideBar">
-        <app-cart class="cartContainer" *ngIf="mode!='admin'"></app-cart>
+        <app-cart *ngIf="mode!='admin'"></app-cart>
         <app-admin-management *ngIf="mode=='admin'"></app-admin-management>
     </div>
     <div class="storeContainer">
-        <app-products class="productsContainer"></app-products>
+        <app-products></app-products>
     </div>
 </div>

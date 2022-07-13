@@ -22,10 +22,9 @@
     display: flex;
     margin: 25px;
     align-items: center;
+    gap: 145px;
 }
-.categoriesNav{
-   margin-left: 100px;
-}
+
 .searchContainer{
     width: 20%
 }

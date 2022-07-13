@@ -1,27 +1,22 @@
-
-<!-- <div class="card-header cardHeader">
-        <div>{{productItem.name}}</div>
-        <div>price: {{productItem.price}}</div>
-    </div>
-    <div class="img">
-        <fa-icon class="editBtn" (click)="onEditClicked()" *ngIf="mode=='admin'" [icon]="faPencil"></fa-icon>
-         <img class="card-img-bottom productImg" src={{productItem.imgUrl}}><br>
-    </div> -->
-
 <div class="card cardContainer">
-    <div class="card-body cardDetailsContainer">
-        <h5 class="card-title">{{productItem.name}}</h5>
+    <div class="img" (click)="onOpenModal(modalTemplate)">
+        <fa-icon class="editBtn" (click)="onEditClicked()" *ngIf="mode=='admin'" [icon]="faPencil"></fa-icon>
+        <img class="card-img-top productImg" src={{productItem.imgUrl}}><br>
+    </div>
+    <div class="cardDetailsContainer">
+        <div class="card-title">{{productItem.name}}</div>
         <div>price: {{productItem.price}}</div>
     </div>
-    <div class="img">
-        <fa-icon class="editBtn" (click)="onEditClicked()" *ngIf="mode=='admin'" [icon]="faPencil"></fa-icon>
-         <img class="card-img-bottom productImg" src={{productItem.imgUrl}}><br>
-    </div> 
 
-    <div *ngIf="mode=='store'"> quantity<input type="number" [(ngModel)]="productQuantity">
-        <button (click)="onQuantityClicked()">ok</button>
-    </div>
+
+    <ng-template #modalTemplate>
+        <div><img class="modalImg" src={{productItem.imgUrl}}><br>
+
+            <div class="quantityField"> quantity<input type="number" [(ngModel)]="productQuantity">
+                <button (click)="onQuantityClicked()">ok</button>
+            </div>
+        </div>
+
+    </ng-template>
+
 </div>
-
-
-

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
@@ -8,6 +8,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-product-card',
@@ -16,6 +17,8 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProductCardComponent implements OnInit {
   mode;
+  modalRef?: BsModalRef;
+
 
   @Input() productItem: Product = {} as Product;
   initProductQuantityInCart = 0;
@@ -23,12 +26,16 @@ export class ProductCardComponent implements OnInit {
   cartId: number;
   cartItemId: number | null
   faPencil = faPencil;
-  
-  constructor(private productsStateService: ProductsStateService, private loginStateService: LoginStateService, private cartStateService: CartStateService, private cartItemsService: CartItemsService, private activatedroute: ActivatedRoute) { }
+
+  constructor(private productsStateService: ProductsStateService,
+    private loginStateService: LoginStateService,
+    private cartStateService: CartStateService,
+    private cartItemsService: CartItemsService,
+    private activatedroute: ActivatedRoute,
+    private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.activatedroute.data.subscribe(data => { this.mode = data['mode']; })
-
 
     this.loginStateService.getLoggedInCustomerState().subscribe(customer => {
       if (!customer?.isAdmin) {
@@ -55,12 +62,18 @@ export class ProductCardComponent implements OnInit {
   }
 
   onQuantityClicked() {
+    this.modalRef.hide()
+    
+    if(this.productQuantity<=0){
+      return
+    }
     if (!this.cartItemId) {
       const addedProduct = {
         productId: this.productItem.id,
         quantity: this.productQuantity,
         cartId: this.cartId
       }
+
       this.cartItemsService.addCartItem(addedProduct).subscribe()
     } else {
       this.cartItemsService.updateCartItem(this.cartItemId, this.productQuantity).subscribe()
@@ -68,5 +81,10 @@ export class ProductCardComponent implements OnInit {
   }
   onEditClicked() {
     this.productsStateService.setProductToEdit(this.productItem)
+  }
+
+  onOpenModal(modalTemplate: TemplateRef<any>) {
+    if (this.mode != 'store') return
+    this.modalRef = this.modalService.show(modalTemplate);
   }
 }

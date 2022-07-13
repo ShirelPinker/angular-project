@@ -1,20 +1,26 @@
 .cardContainer {
-    height: 300px;
-
+    /* height: 300px; */
+    width: 33%;
+    display: inline;
+    border: none;
 }
 
 .cardDetailsContainer {
     display: flex;
     justify-content: space-between;
+    height: 10%;
+
 }
 
 .productImg {
-    width: 100%;
-    min-height: 404px;  
-     object-fit: contain;
+    max-width:100%;
+    max-height:100%;
 }
 
 .editBtn {
+    position: absolute;
+    top: 5px;
+    right: 7px;
     outline: none;
     background: transparent;
     border: 1px solid transparent;
@@ -23,3 +29,27 @@
 .editBtn:hover {
     cursor: pointer;
 }
+
+.img{
+    height:90%;
+    position: relative;
+}
+
+.quantityField{
+    position: absolute;
+    top: 4%;
+    left: 12%;
+}
+
+.modalImg{
+    position: relative;
+    height: 472px;
+    width: 412px;
+}
+
+
+
+::ng-deep .modal-dialog{
+    max-width: 412px !important;;
+    width: 400px !important;
+  }

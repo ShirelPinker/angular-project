@@ -27,6 +27,7 @@ import { CheckoutFormComponent } from './components/checkout-form/checkout-form.
 import { HighlighterPipe } from './pipes/highlighter.pipe';
 import { AdminManagementComponent } from './components/admin-management/admin-management.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -60,8 +61,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
-    ],
+    FontAwesomeModule,
+    ModalModule.forRoot()
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

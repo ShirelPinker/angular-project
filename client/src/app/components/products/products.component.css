@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     gap:20px;
-    row-gap: 120px;
     /* margin: 20px; */
 }
 
