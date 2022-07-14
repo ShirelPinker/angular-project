@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 
@@ -10,7 +11,7 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 export class HeaderComponent implements OnInit {
   introductionName: String;
   faSeedling= faSeedling;
-  constructor(private loginStateService:LoginStateService) { }
+  constructor(private loginStateService:LoginStateService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
@@ -20,6 +21,10 @@ export class HeaderComponent implements OnInit {
         this.introductionName = loggedInCustomer.firstName
       }
     })
+  }
+
+  onLogoClicked(){
+    this.router.navigate(['/main'])
   }
 
 }

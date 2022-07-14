@@ -14,7 +14,7 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 export class GoToShoppingComponent implements OnInit {
   isActiveCart = false;
   constructor(private loginStateService: LoginStateService, private cartService: CartService, private cartStateService: CartStateService, private router: Router) { }
-
+//check if mode is admin then have go to products button?
   ngOnInit(): void {
     this.cartStateService.getCartState().pipe(
       filter((cartState: CartState) => cartState != null),

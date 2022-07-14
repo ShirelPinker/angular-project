@@ -4,7 +4,7 @@
   <div class="itemDetails">
     <div class="cartItemTitle" [innerHtml]="productName | highlighter:searchedText"></div>
     <div>Quantity: {{cartItem.quantity}}</div>
-    <div>Price: {{price}}</div>
+    <div>Price: {{price | currency:'USD'}}</div>
   </div>
   <fa-icon class="deleteItemBtn" *ngIf="mode=='store'" (click)="onDeleteCartItemClicked()" [icon]="faTrash"></fa-icon>
 

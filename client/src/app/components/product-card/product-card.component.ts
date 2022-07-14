@@ -23,7 +23,6 @@ export class ProductCardComponent implements OnInit {
 
 
   @Input() productItem: Product = {} as Product;
-  initProductQuantityInCart = 0;
   productQuantity: number;
   cartId: number;
   cartItemId: number | null

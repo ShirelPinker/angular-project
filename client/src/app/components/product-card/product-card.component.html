@@ -5,7 +5,7 @@
     </div>
     <div class="cardDetailsContainer">
         <div class="card-title">{{productItem.name}}</div>
-        <div>Price: {{productItem.price}}</div>
+        <div>Price: {{productItem.price | currency:'USD'}}</div>
     </div>
 
 
@@ -19,7 +19,7 @@
             </div>
 
             <div class="quantityField input-group">
-                <input type="number" class="form-control quantityInput" [(ngModel)]="productQuantity"
+                <input type="number" min="0" class="form-control quantityInput" [(ngModel)]="productQuantity"
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button (click)="onQuantityClicked()" class="btn btn-primary" type="button">ok</button>
