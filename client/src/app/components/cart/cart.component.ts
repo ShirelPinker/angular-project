@@ -7,6 +7,7 @@ import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { Mode } from 'src/app/models/modeEnum';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export class CartComponent implements OnInit {
   @Input() searchedText: string;
   faShoppingCart= faShoppingCart;
-  mode;
+  mode: Mode;
+  Mode = Mode;
   cartItems$: Observable<CartItem[]> = of([]);
   totalPrice: number;
   cartId: number;

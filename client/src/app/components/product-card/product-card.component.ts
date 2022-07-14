@@ -9,6 +9,7 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { Mode } from 'src/app/models/modeEnum';
 
 @Component({
   selector: 'app-product-card',
@@ -16,7 +17,8 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  mode;
+  mode:Mode;
+  Mode = Mode;
   modalRef?: BsModalRef;
 
 
@@ -81,7 +83,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   onOpenModal(modalTemplate: TemplateRef<any>) {
-    if (this.mode != 'store') return
+    if (this.mode != Mode.Store) return
     this.modalRef = this.modalService.show(modalTemplate);
   }
 

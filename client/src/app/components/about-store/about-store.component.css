@@ -1,6 +1,6 @@
 
 .aboutContainer{
-    background-color: #fff7f4;;
+    background-color: #fff0eb;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,6 +16,7 @@
     font-family: inherit;
     font-size: 20px;
     color: darkslategray;
+    margin-top: 4px;
 
 }
 .aboutImg{

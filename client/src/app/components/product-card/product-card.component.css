@@ -66,8 +66,15 @@
 }
 
 .modalTitle {
-    position: absolute;
-    margin: auto;
-    top: 5px;
+    font-size: 23px;
+}
 
+.modalHeader {
+    top: 1px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    padding: 8px;
+    position: absolute;
 }

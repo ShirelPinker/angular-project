@@ -28,6 +28,6 @@ export class RegisterComponent implements OnInit {
   onRegister2Completed(register2details) {
     this.newCustomerRegistrationData = { ...register2details, ...this.register1details }
     this.customersService.addUser(this.newCustomerRegistrationData)
-      .subscribe(() => this.router.navigate(['/first']));
+      .subscribe(() => this.router.navigate(['/main']));
   }
 }

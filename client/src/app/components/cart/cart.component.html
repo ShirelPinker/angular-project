@@ -1,6 +1,6 @@
 <div class="cartContainer">
 
-    <div *ngIf="mode=='store'" class="cartHeader">
+    <div *ngIf="mode==Mode.Store" class="cartHeader">
         <div class="cartHeaderTitle">Shopping Cart <fa-icon [icon]="faShoppingCart"></fa-icon>
         </div>
         <button type="button" class="btn btn-light"  (click)="onEmptyCartClicked()">Empty Cart</button>
@@ -18,7 +18,7 @@
 
     <div class="activeCartFooter">
         <div class="cartPrice"> Total Price: {{totalPrice}}</div>
-        <button class="btn btn-primary" *ngIf="mode=='store'" (click)="onCheckoutClicked()">Checkout</button>
+        <button class="btn btn-primary" *ngIf="mode==Mode.Store" (click)="onCheckoutClicked()">Checkout</button>
 
     </div>
 

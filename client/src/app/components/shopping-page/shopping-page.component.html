@@ -11,8 +11,8 @@
 
 <div class="mainContainer">
     <div class="sideBar">
-        <app-cart *ngIf="mode!='admin'"></app-cart>
-        <app-admin-management *ngIf="mode=='admin'"></app-admin-management>
+        <app-cart *ngIf="mode!=Mode.Admin"></app-cart>
+        <app-admin-management *ngIf="mode==Mode.Admin"></app-admin-management>
     </div>
     <div class="storeContainer">
         <app-products></app-products>
