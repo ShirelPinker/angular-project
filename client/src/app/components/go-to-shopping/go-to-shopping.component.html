@@ -1,5 +1,9 @@
+<div  *ngIf="(customerState$ | async).isAdmin">
+    <button class="btn btn-outline-success btn-lg" (click)="manageStoreClicked()">Manage Store</button>
 
-<div class="startShoppingBtnContainer">
+</div>
+<div *ngIf="!(customerState$ | async).isAdmin" class="startShoppingBtnContainer">
     <button class="btn btn-outline-success btn-lg" (click)="onStartShoppingClicked()" *ngIf="!isActiveCart" >Start Shopping</button>
     <button class="btn btn-outline-success btn-lg" (click)="onResumeShoppingClicked()" *ngIf="isActiveCart"  >Resume Shopping</button>
 </div>
+

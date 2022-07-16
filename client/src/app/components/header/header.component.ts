@@ -11,14 +11,17 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 export class HeaderComponent implements OnInit {
   introductionName: String;
   faSeedling= faSeedling;
+  isLoggedIn;
   constructor(private loginStateService:LoginStateService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
       if (loggedInCustomer == null) {
         this.introductionName = 'guest'
+        this.isLoggedIn = false;
       } else {
         this.introductionName = loggedInCustomer.firstName
+        this.isLoggedIn=true;
       }
     })
   }
@@ -26,5 +29,10 @@ export class HeaderComponent implements OnInit {
   onLogoClicked(){
     this.router.navigate(['/main'])
   }
-
+  onSignOutClicked(){
+    this.loginStateService.updateCustomerState(null);
+    //should wait
+    this.router.navigate(['/main']) 
+    
+  }
 }

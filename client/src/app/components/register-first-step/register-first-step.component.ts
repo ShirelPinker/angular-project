@@ -4,12 +4,12 @@ import { UniqueEmailValidator } from 'src/app/validators/UniqueEmailValidator';
 import { UniqueGovernmentIdValidator } from 'src/app/validators/UniqueGovernmentIdValidator';
 
 @Component({
-  selector: 'app-register1-page',
-  templateUrl: './register1-page.component.html',
-  styleUrls: ['./register1-page.component.css']
+  selector: 'app-register-first-step',
+  templateUrl: './register-first-step.component.html',
+  styleUrls: ['./register-first-step.component.css']
 })
 
-export class Register1PageComponent implements OnInit {
+export class RegisterFirstStepComponent implements OnInit {
   signupForm: UntypedFormGroup;
   @Output() register1Details = new EventEmitter();
 

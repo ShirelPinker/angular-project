@@ -15,8 +15,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ShoppingPageComponent } from './components/shopping-page/shopping-page.component';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
-import { Register1PageComponent } from './components/register1-page/register1-page.component';
-import { Register2PageComponent } from './components/register2-page/register2-page.component';
+import { RegisterFirstStepComponent } from './components/register-first-step/register-first-step.component';
+import { RegisterSecondStepComponent } from './components/register-second-step/register-second-step.component';
 import { ReceiptPageComponent } from './components/receipt-page/receipt-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoToShoppingComponent } from './components/go-to-shopping/go-to-shopping.component';
@@ -44,8 +44,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MainPageComponent,
     ShoppingPageComponent,
     CheckoutPageComponent,
-    Register1PageComponent,
-    Register2PageComponent,
+    RegisterFirstStepComponent,
+    RegisterSecondStepComponent,
     ReceiptPageComponent,
     GoToShoppingComponent,
     LoggedInNotificationComponent,

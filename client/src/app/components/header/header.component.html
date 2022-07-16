@@ -1,14 +1,21 @@
 <div class="headerContainer">
     <div class="upperHeader">
-        <div (click)="onLogoClicked()" class="logoName">Plants <fa-icon [icon]="faSeedling"></fa-icon>
+        <div (click)="onLogoClicked()" class="logoName headerLeft">Plants <fa-icon [icon]="faSeedling"></fa-icon>
         </div>
-        <div>
-            <h1 class="introduction">Hello, {{introductionName}}</h1>
-            <div>
-                Contact us: +1 568 588 958
+
+        <div class="headerRight">
+            <div class="introContainer">
+                <h1 class="introduction">Hello, {{introductionName}}</h1>
+                <div>
+                    Contact us: +1 568 588 958
+                </div>
             </div>
+
+            <div *ngIf="isLoggedIn" (click)="onSignOutClicked()" class="signOutBtn">Sign Out</div>
         </div>
     </div>
+
+
     <img class="headerImg"
         src="https://plnts.com/_next/image?url=https%3A%2F%2Fwebshop.plnts.com%2Fmedia%2Fwysiwyg%2Fbanners%2Fbanner-all-plnts.jpg&w=1920&q=75"
         alt="">

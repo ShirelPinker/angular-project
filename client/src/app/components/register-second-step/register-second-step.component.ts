@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-register2-page',
-  templateUrl: './register2-page.component.html',
-  styleUrls: ['./register2-page.component.css']
+  selector: 'app-register-second-step',
+  templateUrl: './register-second-step.component.html',
+  styleUrls: ['./register-second-step.component.css']
 })
-export class Register2PageComponent implements OnInit {
+export class RegisterSecondStepComponent implements OnInit {
   cities = ['Tel Aviv', 'Jerusalem', 'Ramat Gan', 'Haifa', 'Rishon Letzion', 'Petach Tikva', 'Ashdod', 'Natanya', 'Beer Sheva', 'Bnei Brak']
   signupForm: UntypedFormGroup;
   @Output() register2Details = new EventEmitter();
