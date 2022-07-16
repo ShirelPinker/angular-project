@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { CartStateService } from './states/cart-state.service';
-import { forkJoin, map, Observable, of, switchMap, tap } from 'rxjs';
-import { CartItem } from '../models/cartItem';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,6 @@ export class CartItemsService {
     return this.http.post(`http://localhost:3001/api/cartItems/`, addedProduct).pipe(
       tap((cartItem) => {
         this.cartStateService.addCartItem(cartItem)
-        console.log(cartItem);
       }))
   }
 

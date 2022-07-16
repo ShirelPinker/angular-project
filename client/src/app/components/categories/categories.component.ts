@@ -11,7 +11,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 export class CategoriesComponent implements OnInit {
   categories$: Observable<Category[]> = of([]);
   @Output() categorySelected = new EventEmitter();
-  @Input() activeCategory: number;
+  @Input() activeCategory: number | null;
 
   constructor(private categoriesService: CategoriesService) { }
 

@@ -1,15 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { filter, switchMap, tap } from 'rxjs';
+import { Mode } from 'src/app/models/modeEnum';
 import { Product } from 'src/app/models/product';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
-import { ActivatedRoute } from '@angular/router';
-import { CartItem } from 'src/app/models/cartItem';
-import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { Mode } from 'src/app/models/modeEnum';
 
 @Component({
   selector: 'app-product-card',
@@ -17,7 +16,7 @@ import { Mode } from 'src/app/models/modeEnum';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  mode:Mode;
+  mode: Mode;
   Mode = Mode;
   modalRef?: BsModalRef;
 
@@ -38,10 +37,11 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     this.activatedroute.data.subscribe(data => { this.mode = data['mode']; })
 
-    this.loginStateService.getLoggedInCustomerState().subscribe(customer => {
-      if (!customer?.isAdmin) {
-
-        this.cartStateService.getCartState().subscribe(cartState => {
+    this.loginStateService.getLoggedInCustomerState().
+      pipe(
+        filter(customer => Boolean(customer && !customer.isAdmin)),
+        switchMap(() => this.cartStateService.getCartState()),
+        tap(cartState => {
           this.cartId = cartState!.cart.id;
 
           const productCartItem = cartState!.cartItems.find((cartItem) => cartItem.productId == this.productItem.id)
@@ -52,15 +52,11 @@ export class ProductCardComponent implements OnInit {
             this.productQuantity = 0;
             this.cartItemId = null
           }
-        }
-
-        )
-      }
-    })
+        })).subscribe()
   }
 
   onQuantityClicked() {
-    this.modalRef.hide()
+    this.modalRef?.hide()
 
     if (this.productQuantity <= 0) {
       return

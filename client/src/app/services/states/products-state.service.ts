@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
-import { ProductsState } from 'src/app/models/productsState';
-import { LoggedInCustomer } from '../../models/loggedInCustomer';
+import { ProductsState, ProductToEdit } from 'src/app/models/productsState';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsStateService {
-  private productsState: ProductsState = { products: [], productToEdit: null, productsShownBy: null, searchValue: null };
+  private productsState: ProductsState = null;
 
   private productsStateSubject = new BehaviorSubject<ProductsState>(this.productsState);
 
@@ -21,31 +20,45 @@ export class ProductsStateService {
   updateProductsState(newProductState: ProductsState) {
     this.productsState = newProductState;
     this.productsStateSubject.next(this.productsState)
-    console.log(`product state: ${JSON.stringify(this.productsState)}`);
+    console.log(`product state has: ${this.productsState?.products.length} items`);
   }
 
   setProducts(products: Product[], productsShownBy, searchValue) {
-    const newProductState = { ...this.productsState }
-    newProductState.products = products;
-    newProductState.productsShownBy = productsShownBy;
-    newProductState.searchValue = searchValue;
+    let newProductState: ProductsState;
+    if (this.productsState) {
+      newProductState = { ...this.productsState }
+      newProductState.products = products;
+      newProductState.productsShownBy = productsShownBy;
+      newProductState.searchValue = searchValue;
+    } else {
+      newProductState = {
+        products: products,
+        productsShownBy: productsShownBy,
+        searchValue: searchValue,
+        productToEdit: null
+      }
+    }
     this.updateProductsState(newProductState)
   }
 
-  setProductToEdit(productToEdit: Product) {
+  setProductToEdit(productToEdit: ProductToEdit) {
+    if (!this.productsState) return;
+
     const newProductState = { ...this.productsState }
     newProductState.productToEdit = productToEdit;
     this.updateProductsState(newProductState)
   }
 
-  updateProduct(editedProduct: Product) {
+  updateProduct(editedProduct: ProductToEdit) {
+    if (!this.productsState) return;
+
     const newProductState = { ...this.productsState }
     const updatedProducts = newProductState.products.map(product => {
-      if (product.id == editedProduct.id) {
+      if (product.id == editedProduct?.id) {
         return editedProduct
       } else { return product }
     })
-    newProductState.products=updatedProducts
+    newProductState.products = updatedProducts
     this.updateProductsState(newProductState)
   }
 

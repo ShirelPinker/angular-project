@@ -20,24 +20,24 @@ export class GoToShoppingComponent implements OnInit {
   ngOnInit(): void {
     this.customerState$ = this.loginStateService.getLoggedInCustomerState()
     this.cartStateService.getCartState().pipe(
-      filter((cartState: CartState) => cartState != null),
-      map((cartState: CartState) => cartState.cart))
+      filter(Boolean),
+      map((cartState: CartState) => cartState!.cart))
       .subscribe(cart => {
         this.isActiveCart = cart ? cart.isActive : false
       })
   }
+
   manageStoreClicked(){
     this.router.navigate(['/shopping/admin'])
   }
 
   onStartShoppingClicked() {
     this.loginStateService.getLoggedInCustomerState().pipe(
-      concatMap(customer => {//we might be able to change to switch map - test that!
-        return this.cartService.createNewCart(customer.id)
+      concatMap(customer => {
+        return this.cartService.createNewCart(customer!.id)
       }
       )).subscribe(() => this.router.navigate(['/shopping']))
   }
-
 
   onResumeShoppingClicked() {
     this.router.navigate(['/shopping'])

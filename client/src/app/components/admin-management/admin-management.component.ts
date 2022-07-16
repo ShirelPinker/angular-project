@@ -1,8 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { filter } from 'rxjs';
 import { Category } from 'src/app/models/category';
-import { Product } from 'src/app/models/product';
+import { NewProduct } from 'src/app/models/newProduct';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
@@ -54,37 +54,39 @@ export class AdminManagementComponent implements OnInit {
       })
     })
 
-    this.productsStateService.getProductsState().subscribe(
-      productsState => {
-        if (productsState.productToEdit) {
-          this.adminStatus = AdminStatus.InAction;
-          this.productToEditId = productsState.productToEdit.id;
-          this.adminAction = AdminAction.Edit;
-          this.signupForm.controls['name'].setValue(productsState.productToEdit.name);
-          this.signupForm.controls['price'].setValue(productsState.productToEdit.price);
-          this.signupForm.controls['imgUrl'].setValue(productsState.productToEdit.imgUrl);
-          let categoryIndex;
-          for (let i = 0; i < this.categories.length; i++) {
-            if (this.categories[i].id == productsState.productToEdit.categoryId) {
-              categoryIndex = i;
+    this.productsStateService.getProductsState().pipe(filter(Boolean))
+      .subscribe(
+        productsState => {
+          if (productsState.productToEdit) {
+            this.adminStatus = AdminStatus.InAction;
+            this.productToEditId = productsState.productToEdit.id;
+            this.adminAction = AdminAction.Edit;
+            this.signupForm.controls['name'].setValue(productsState.productToEdit.name);
+            this.signupForm.controls['price'].setValue(productsState.productToEdit.price);
+            this.signupForm.controls['imgUrl'].setValue(productsState.productToEdit.imgUrl);
+            let categoryIndex;
+            for (let i = 0; i < this.categories.length; i++) {
+              if (this.categories[i].id == productsState.productToEdit.categoryId) {
+                categoryIndex = i;
+              }
             }
-          }
 
-          this.signupForm.controls['category'].setValue(this.categories[categoryIndex].name);
-        }
-      })
+            this.signupForm.controls['category'].setValue(this.categories[categoryIndex].name);
+          }
+        })
   }
 
   onAddNewProduct() {
     this.adminStatus = AdminStatus.InAction;
     this.signupForm.reset();
-    this.adminAction =AdminAction.Add
+    this.adminAction = AdminAction.Add
   }
   onSave() {
     const category = this.categories.find(category => category.name == this.signupForm.value.category)
-    const productDetails = {
+
+    const productDetails: NewProduct = {
       name: this.signupForm.value.name,
-      categoryId: category.id,
+      categoryId: category!.id,
       price: this.signupForm.value.price,
       imgUrl: this.signupForm.value.imgUrl
     }

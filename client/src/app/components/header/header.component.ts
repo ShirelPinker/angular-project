@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit {
   onLogoClicked(){
     this.router.navigate(['/main'])
   }
+  
   onSignOutClicked(){
     this.loginStateService.updateCustomerState(null);
-    //should wait
     this.router.navigate(['/main']) 
     
   }

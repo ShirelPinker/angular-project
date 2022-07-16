@@ -14,7 +14,7 @@ export class ShoppingPageComponent implements OnInit {
   mode:Mode;
   Mode = Mode;
   searchWord: string;
-  activeCategory: number;
+  activeCategory: number | null;
 
   constructor(private productsService: ProductsService, private activatedroute: ActivatedRoute) { }
 

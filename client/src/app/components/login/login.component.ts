@@ -13,27 +13,25 @@ export class LoginComponent implements OnInit {
   signupForm: UntypedFormGroup;
   isLoggedInCustomer: boolean = false;
 
-  constructor(private loginStateService:LoginStateService, private customersService:CustomersService, private router: Router) { }
-  
+  constructor(private loginStateService: LoginStateService, private customersService: CustomersService, private router: Router) { }
+
   ngOnInit(): void {
-    this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
-      if (loggedInCustomer) {
-        this.isLoggedInCustomer = true;
-      }
-    })
+    this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => this.isLoggedInCustomer = Boolean(loggedInCustomer))
     this.signupForm = new UntypedFormGroup({
       'email': new UntypedFormControl(null, Validators.required),
       'password': new UntypedFormControl(null, Validators.required),
-      })
+    })
   }
 
 
   onLoginClicked() {
     const customerLoginData = { email: this.signupForm.value.email, password: this.signupForm.value.password }
-    this.customersService.login(customerLoginData).subscribe((response)=>{if (!response){
-    this.router.navigate(['/shopping/admin'])
+    this.customersService.login(customerLoginData).subscribe((response) => {
+      if (!response) {
+        this.router.navigate(['/shopping/admin'])
 
-    }})
+      }
+    })
   }
 
   onSignUpClicked() {

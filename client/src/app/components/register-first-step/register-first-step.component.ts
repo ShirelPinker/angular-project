@@ -39,12 +39,6 @@ export class RegisterFirstStepComponent implements OnInit {
       }, { validators: passwordsMatchValidator, updateOn: 'blur' })
 
     })
-    // this.signupForm.valueChanges.subscribe(form => {
-    //   console.log(form)
-    //   const governmentId = this.signupForm.get("governmentId")
-    //   console.log("dirty " + governmentId.dirty);
-    //   console.log("valid " + governmentId.valid);
-    // })
   }
 
   onNextClicked() {
@@ -69,5 +63,11 @@ export function validGovernmentId(): ValidatorFn {
 export const passwordsMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
   const confirmedPassword = control.get('confirmedPassword');
-  return password.value === confirmedPassword.value ? null : { dontMatch: true };
+  return areMatching(password, confirmedPassword) ? null : { dontMatch: true };
+
+  function areMatching(p1,p2) {
+    const bothExist = p1 && p2
+    const areMatch = p1?.value === p2?.value;
+    return bothExist && areMatch
+  }
 };

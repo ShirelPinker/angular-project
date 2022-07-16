@@ -7,7 +7,7 @@
             <input type="text" id="governmentId" formControlName="governmentId" class="form-control"
                 placeholder="123456789">
             <span class="errorMsg"
-                *ngIf="signupForm.get('governmentId').status=='INVALID' &&  signupForm.get('governmentId').touched">
+                *ngIf="signupForm.get('governmentId')?.status=='INVALID' &&  signupForm.get('governmentId')?.touched">
                 Please enter a valid government Id
             </span>
         </div>
@@ -16,7 +16,7 @@
             <label for="email">Email Address</label>
             <input type="text" id="email" formControlName="email" class="form-control" placeholder="your@example.com">
             <span class="errorMsg"
-                *ngIf="signupForm.get('email').status=='INVALID'  &&  signupForm.get('email').touched">
+                *ngIf="signupForm.get('email')?.status=='INVALID'  &&  signupForm.get('email')?.touched">
                 Please enter a valid email
             </span>
         </div>
@@ -27,7 +27,7 @@
                 <input type="text" id="password" formControlName="password" class="form-control"
                     placeholder="Enter your password">
                 <span class="errorMsg"
-                    *ngIf="!signupForm.get('passwordsFeilds.password').valid &&  signupForm.get('passwordsFeilds.password').touched">
+                    *ngIf="!signupForm.get('passwordsFeilds.password')?.valid &&  signupForm.get('passwordsFeilds.password')?.touched">
                     Please enter a valid password
                 </span>
             </div>
@@ -37,13 +37,13 @@
                 <input type="text" id="confirmedPassword" formControlName="confirmedPassword" class="form-control"
                     placeholder="Confirm your password">
                 <span class="errorMsg"
-                    *ngIf="!signupForm.get('passwordsFeilds.confirmedPassword').valid &&  signupForm.get('passwordsFeilds.confirmedPassword').touched">
+                    *ngIf="!signupForm.get('passwordsFeilds.confirmedPassword')?.valid &&  signupForm.get('passwordsFeilds.confirmedPassword')?.touched">
                     Please enter a valid confirmed Password
                 </span>
             </div>
 
             <span class="errorMsg"
-                *ngIf="!signupForm.get('passwordsFeilds').valid &&  signupForm.get('passwordsFeilds').touched">
+                *ngIf="!signupForm.get('passwordsFeilds')?.valid &&  signupForm.get('passwordsFeilds')?.touched">
                 Passwords do not match
             </span>
         </div>

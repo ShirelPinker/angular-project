@@ -7,16 +7,9 @@ import { LoggedInCustomer } from '../../models/loggedInCustomer';
 })
 export class LoginStateService {
   private loggedInCustomerState = new BehaviorSubject<LoggedInCustomer>(null);
-  // defaultCustumer = {
-  //   id: 4,
-  //   firstName: "Shir",
-  //   lastName: "Pink",
-  //   isAdmin: true
-  // }
-  // default for development
-  // private loggedInCustomerState = new BehaviorSubject<LoggedInCustomer>(this.defaultCustumer);
+
   constructor() { }
-  
+
   getLoggedInCustomerState(): Observable<LoggedInCustomer> {
     return this.loggedInCustomerState.asObservable();
   }
@@ -24,7 +17,7 @@ export class LoginStateService {
   updateCustomerState(customer: LoggedInCustomer) {
     this.loggedInCustomerState.next(customer)
 
-    console.log(`login state: ${JSON.stringify(customer)}`);
+    console.log(`login state: ${JSON.stringify(customer, null, 2)}`);
   }
 
 }

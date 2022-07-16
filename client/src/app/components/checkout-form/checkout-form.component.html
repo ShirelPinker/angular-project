@@ -8,7 +8,7 @@
                     {{ city }}
                 </option>
             </select>
-            <span *ngIf="checkoutForm.get('city').status=='INVALID' &&  checkoutForm.get('city').touched">
+            <span *ngIf="checkoutForm.get('city')?.status=='INVALID' &&  checkoutForm.get('city')?.touched">
                 Please choose a city
             </span>
         </div>
@@ -17,7 +17,7 @@
             <label for="street">Street</label>
             <input (dblclick)="ondblclickStreet()" type="text" id="street" formControlName="street"
                 class="form-control">
-            <span *ngIf="checkoutForm.get('street').status=='INVALID'  &&  checkoutForm.get('street').touched">
+            <span *ngIf="checkoutForm.get('street')?.status=='INVALID'  &&  checkoutForm.get('street')?.touched">
                 Please enter a valid street
             </span>
         </div>
@@ -25,7 +25,7 @@
         <div>
             <label for="deliveryDate">deliveryDate</label>
             <input type="date" id="deliveryDate" formControlName="deliveryDate" class="form-control">
-            <span *ngIf="checkoutForm.get('deliveryDate').status=='INVALID' &&  checkoutForm.get('deliveryDate').touched">
+            <span *ngIf="checkoutForm.get('deliveryDate')?.status=='INVALID' &&  checkoutForm.get('deliveryDate')?.touched">
                 Please enter a valid shipping date
             </span>
         </div>
@@ -37,7 +37,7 @@
         <div>
             <label for="creditCard">Credit Card</label>
             <input type="text" id="creditCard" formControlName="creditCard" class="form-control">
-            <span *ngIf="checkoutForm.get('creditCard').status=='INVALID' &&  checkoutForm.get('creditCard').touched">
+            <span *ngIf="checkoutForm.get('creditCard')?.status=='INVALID' &&  checkoutForm.get('creditCard')?.touched">
                 Please enter a valid creditCard
             </span>
         </div>

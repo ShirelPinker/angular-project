@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { distinctUntilChanged, Observable, switchMap, tap , take} from 'rxjs';
+import { distinctUntilChanged, Observable, switchMap, tap, take, filter, of } from 'rxjs';
 import { NewProduct } from '../models/newProduct';
 import { Product } from '../models/product';
 import { ProductsStateService } from './states/products-state.service';
-import { ProductsShownBy } from '../models/productsState'
+import { ProductsShownBy, ProductsState } from '../models/productsState'
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   constructor(private http: HttpClient, private productsStateService: ProductsStateService) { }
 
-  getProductsByCategoryId(categoryId: number): Observable<Product[]> {
+  getProductsByCategoryId(categoryId: number | null): Observable<Product[]> {
     return this.http.get<Product[]>(`http://localhost:3001/api/products/?categoryId=${categoryId}`)
       .pipe(tap((products: Product[]) => this.productsStateService.setProducts(products, ProductsShownBy.CategoryId, categoryId)))
   }
@@ -31,14 +31,16 @@ export class ProductsService {
       .pipe(
         switchMap(() => this.productsStateService.getProductsState()),
         take(1),
-        switchMap((productsState) => {
+        switchMap(((productsState: ProductsState) => {
+          if (!productsState) return of();
+
           if (productsState.productsShownBy == ProductsShownBy.CategoryId) {
             return this.getProductsByCategoryId(productsState.searchValue as number)
           } else {
             return this.getProductsBySearchName(productsState.searchValue as string)
           }
         })
-      )
+        ))
   }
 
   updateProduct(editedProduct: Product) {

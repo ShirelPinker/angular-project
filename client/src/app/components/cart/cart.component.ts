@@ -28,9 +28,9 @@ export class CartComponent implements OnInit {
     this.activatedroute.data.subscribe(data => { this.mode = data['mode']; })
 
     this.cartItems$ = this.cartStateService.getCartState().pipe(
-      filter((cartState: CartState) => cartState != null),
-      tap((cartState: CartState) => { this.cartId = cartState.cart.id }),
-      map((cartState: CartState) => cartState.cartItems))
+      filter(Boolean),
+      tap((cartState: CartState) => { this.cartId = cartState!.cart.id }),
+      map((cartState: CartState) => cartState!.cartItems))
 
     this.cartItems$.subscribe(cartItems => {
       this.totalPrice = 0;

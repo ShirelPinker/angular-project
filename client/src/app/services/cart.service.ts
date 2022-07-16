@@ -7,8 +7,6 @@ import { CartState } from '../models/cartState';
 import { NewCart } from '../models/newCart';
 import { CartStateService } from './states/cart-state.service';
 
-type JoinedResponse = Record<string, Observable<any>>
-
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +33,7 @@ export class CartService {
       .pipe(
         switchMap((carts: Cart[]) => {
           const cartItems$: Observable<CartItem[]> = carts.length < 1 ? of([]) : this.getCartItemsByCartId(carts[0].id)
-          const joinedObject: JoinedResponse = { cartItems: cartItems$, cart: of(carts[0]) }
+          const joinedObject = { cartItems: cartItems$, cart: of(carts[0]) }
           return forkJoin(joinedObject)
         }),
         tap((cartState: CartState) => {

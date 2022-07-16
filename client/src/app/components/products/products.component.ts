@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { filter, map, Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
-import { ProductsState } from 'src/app/models/productsState';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
 
 @Component({
@@ -16,6 +15,6 @@ export class ProductsComponent implements OnInit {
   constructor(private productsStateService: ProductsStateService) { }
 
   ngOnInit(): void {
-    this.products$ = this.productsStateService.getProductsState().pipe(map(productsState=>productsState.products))
+    this.products$ = this.productsStateService.getProductsState().pipe(filter(Boolean),map(productsState=>productsState.products))
   }
 }
