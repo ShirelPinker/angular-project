@@ -1,4 +1,8 @@
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched{
+    border: 1px solid red
+}
+
+select.ng-invalid.ng-touched{
     border: 1px solid red
 }
 
@@ -18,4 +22,12 @@ input.ng-invalid.ng-touched {
 
 .subFormTitle {
     font-size: 20px;
+}
+
+.errorMsg{
+    font-size: 13px;
+}
+
+.dateInput{
+    cursor: pointer;
 }

@@ -11,7 +11,7 @@ export class UniqueEmailValidator implements AsyncValidator {
     control: AbstractControl
   ): Observable<ValidationErrors | null> {
     return this.customerService.isEmailTaken(control.value).pipe(
-      map(isTaken => (isTaken ?  { notUnique: {value: control.value} } : null)),
+      map(isTaken => (isTaken ?  { usernameAlreadyExists: {value: control.value} } : null)),
       catchError(() => of(null))
     );
   }

@@ -6,6 +6,6 @@
     <div>Quantity: {{cartItem.quantity}}</div>
     <div>Price: {{price | currency:'USD'}}</div>
   </div>
-  <fa-icon class="deleteItemBtn" *ngIf="mode=='store'" (click)="onDeleteCartItemClicked()" [icon]="faTrash"></fa-icon>
+  <fa-icon class="deleteItemBtn" *ngIf="mode == Mode.Store" (click)="onDeleteCartItemClicked()" [icon]="faTrash"></fa-icon>
 
 </div>

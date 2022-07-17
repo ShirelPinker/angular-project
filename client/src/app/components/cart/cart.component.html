@@ -18,7 +18,8 @@
 
     <div class="activeCartFooter">
         <div class="cartPrice"> Total Price: {{totalPrice | currency:'USD'}}</div>
-        <button class="btn btn-primary" *ngIf="mode==Mode.Store" (click)="onCheckoutClicked()">Checkout</button>
+
+        <button class="btn btn-primary" [disabled]="cartItemsLen==0" *ngIf="mode==Mode.Store" (click)="onCheckoutClicked()">Checkout</button>
 
     </div>
 

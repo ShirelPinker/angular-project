@@ -16,8 +16,12 @@ export class StoreInfoComponent implements OnInit {
   constructor(private loginStateService:LoginStateService, private productsService: ProductsService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
+    console.log("init");
+    
     this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
       if (loggedInCustomer) {
+        console.log("customer state changed ");
+        
         this.isLoggedInCustomer = true;
       }
     })

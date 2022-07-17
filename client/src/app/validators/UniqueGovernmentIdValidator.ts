@@ -11,7 +11,7 @@ export class UniqueGovernmentIdValidator implements AsyncValidator {
     control: AbstractControl
   ): Observable<ValidationErrors | null> {
     return this.customerService.isUniqueGovernmentId(control.value).pipe(
-      map(isUnique => (isUnique ? null : { notUnique: { value: control.value } })),
+      map(isUnique => (isUnique ? null : { GovernmentIdnotUnique: { value: control.value } })),
       catchError(() => of(null))
     );
   }

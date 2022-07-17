@@ -8,7 +8,7 @@
                     {{ city }}
                 </option>
             </select>
-            <span *ngIf="checkoutForm.get('city')?.status=='INVALID' &&  checkoutForm.get('city')?.touched">
+            <span class="errorMsg" *ngIf="checkoutForm.get('city')?.status=='INVALID' &&  checkoutForm.get('city')?.touched">
                 Please choose a city
             </span>
         </div>
@@ -17,16 +17,19 @@
             <label for="street">Street</label>
             <input (dblclick)="ondblclickStreet()" type="text" id="street" formControlName="street"
                 class="form-control">
-            <span *ngIf="checkoutForm.get('street')?.status=='INVALID'  &&  checkoutForm.get('street')?.touched">
+            <span class="errorMsg" *ngIf="checkoutForm.get('street')?.status=='INVALID'  &&  checkoutForm.get('street')?.touched">
                 Please enter a valid street
             </span>
         </div>
 
         <div>
             <label for="deliveryDate">deliveryDate</label>
-            <input type="date" id="deliveryDate" formControlName="deliveryDate" class="form-control">
-            <span *ngIf="checkoutForm.get('deliveryDate')?.status=='INVALID' &&  checkoutForm.get('deliveryDate')?.touched">
+            <input type="date" id="deliveryDate" formControlName="deliveryDate" class="form-control dateInput">
+            <span class="errorMsg" *ngIf="checkoutForm.get('deliveryDate')?.status=='INVALID' &&  checkoutForm.get('deliveryDate')?.touched && !checkoutForm.get('deliveryDate')?.hasError('dateNotAvailable')">
                 Please enter a valid shipping date
+            </span>
+            <span class="errorMsg" *ngIf="checkoutForm.get('deliveryDate')?.hasError('dateNotAvailable')">
+                Sorry, this date is not available, please choose a different date
             </span>
         </div>
     </div>
@@ -37,8 +40,8 @@
         <div>
             <label for="creditCard">Credit Card</label>
             <input type="text" id="creditCard" formControlName="creditCard" class="form-control">
-            <span *ngIf="checkoutForm.get('creditCard')?.status=='INVALID' &&  checkoutForm.get('creditCard')?.touched">
-                Please enter a valid creditCard
+            <span class="errorMsg" *ngIf="checkoutForm.get('creditCard')?.status=='INVALID' &&  checkoutForm.get('creditCard')?.touched">
+                Please enter a valid Credit Card
             </span>
         </div>
 

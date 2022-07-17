@@ -3,6 +3,7 @@ import { CartItem } from 'src/app/models/cartItem';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { ActivatedRoute } from '@angular/router';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { Mode } from 'src/app/models/modeEnum';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 })
 export class CartItemComponent implements OnInit, OnChanges {
   faTrash = faTrashCan;
-  mode;
+  mode: Mode;
+  Mode = Mode;
   @Input() cartItem: CartItem;
   @Input() searchedText: string;
   productName;

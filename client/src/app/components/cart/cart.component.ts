@@ -16,12 +16,13 @@ import { Mode } from 'src/app/models/modeEnum';
 })
 export class CartComponent implements OnInit {
   @Input() searchedText: string;
-  faShoppingCart= faShoppingCart;
+  faShoppingCart = faShoppingCart;
   mode: Mode;
   Mode = Mode;
   cartItems$: Observable<CartItem[]> = of([]);
   totalPrice: number;
   cartId: number;
+  cartItemsLen;
   constructor(private cartItemsService: CartItemsService, private router: Router, private cartStateService: CartStateService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class CartComponent implements OnInit {
       map((cartState: CartState) => cartState!.cartItems))
 
     this.cartItems$.subscribe(cartItems => {
+      this.cartItemsLen = cartItems.length;
       this.totalPrice = 0;
       for (let item of cartItems) {
         this.totalPrice += item.unitPrice * item.quantity
@@ -42,6 +44,7 @@ export class CartComponent implements OnInit {
 
 
   onCheckoutClicked() {
+
     this.router.navigate(['/checkout'])
   }
 

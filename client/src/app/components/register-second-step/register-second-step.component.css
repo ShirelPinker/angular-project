@@ -24,6 +24,10 @@ input.ng-invalid.ng-touched{
     border: 1px solid red
 }
 
+select.ng-invalid.ng-touched{
+    border: 1px solid red
+}
+
 .errorMsg{
     font-size: 13px;
 }

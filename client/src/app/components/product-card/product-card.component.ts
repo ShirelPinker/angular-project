@@ -58,10 +58,14 @@ export class ProductCardComponent implements OnInit {
   onQuantityClicked() {
     this.modalRef?.hide()
 
-    if (this.productQuantity <= 0) {
-      return
+    if (this.productQuantity == 0) {
+      if (this.cartItemId) {
+        this.cartItemsService.deleteCartItem(this.cartItemId).subscribe()
+      } else {
+        return
+      }
     }
-    if (!this.cartItemId) {
+    else if (!this.cartItemId) {
       const addedProduct = {
         productId: this.productItem.id,
         quantity: this.productQuantity,

@@ -12,7 +12,7 @@ export class AvailableDeliveyDateValidator implements AsyncValidator {
   ): Observable<ValidationErrors | null> {
     const deliveryDate =control.value;
     return this.ordersService.getOrdersByDeliveryDate(deliveryDate).pipe(
-      map(orders => (orders.length>3 ?  { notAvailable: {value: control.value} } : null)),
+      map(orders => (orders.length>3 ?  { dateNotAvailable: {value: control.value} } : null)),
       catchError(() => of(null))
     );
   }

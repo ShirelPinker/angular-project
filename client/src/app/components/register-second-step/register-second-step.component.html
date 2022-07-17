@@ -9,7 +9,7 @@
                     {{ city }}
                 </option>
             </select>
-            <span class="errorMsg" *ngIf="!signupForm.get('city').valid &&  signupForm.get('city').touched">
+            <span class="errorMsg" *ngIf="!signupForm.get('city')?.valid &&  signupForm.get('city')?.touched">
                 Please choose a city
             </span>
         </div>
@@ -17,7 +17,7 @@
         <div>
             <label for="street">Street</label>
             <input type="text" id="street" formControlName="street" class="form-control">
-            <span class="errorMsg" *ngIf="!signupForm.get('street').valid &&  signupForm.get('street').touched">
+            <span class="errorMsg" *ngIf="!signupForm.get('street')?.valid &&  signupForm.get('street')?.touched">
                 Please enter a valid street
             </span>
         </div>
@@ -25,7 +25,7 @@
         <div>
             <label for="firstName"> First Name</label>
             <input type="text" id="firstName" formControlName="firstName" class="form-control">
-            <span class="errorMsg" *ngIf="!signupForm.get('firstName').valid &&  signupForm.get('firstName').touched">
+            <span class="errorMsg" *ngIf="!signupForm.get('firstName')?.valid &&  signupForm.get('firstName')?.touched">
                 Please enter a valid first Name
             </span>
         </div>
@@ -33,7 +33,7 @@
         <div>
             <label for="lastName"> Last Name </label>
             <input type="text" id="lastName" formControlName="lastName" class="form-control">
-            <span class="errorMsg" *ngIf="!signupForm.get('firstName').valid &&  signupForm.get('firstName').touched">
+            <span class="errorMsg" *ngIf="!signupForm.get('firstName')?.valid &&  signupForm.get('firstName')?.touched">
                 Please enter a valid last Name
             </span>
         </div>
