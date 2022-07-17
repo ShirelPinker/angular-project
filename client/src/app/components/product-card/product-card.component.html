@@ -13,13 +13,13 @@
         <div><img class="modalImg" src={{productItem.imgUrl}}><br>
             <div class="modalHeader">
                 <div class="modalTitle">{{productItem.name}}</div>
-                <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="onXClicked()">
                     <span aria-hidden="true" class="visually-hidden">&times;</span>
                 </button>
             </div>
 
             <div class="quantityField input-group">
-                <input type="number" min="0" class="form-control quantityInput" [(ngModel)]="productQuantity"
+                <input type="number" min="0" class="form-control quantityInput" [(ngModel)]="productQuantityInput"
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button (click)="onQuantityClicked()" class="btn btn-primary" type="button">ok</button>

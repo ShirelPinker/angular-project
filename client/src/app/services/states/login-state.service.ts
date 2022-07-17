@@ -7,6 +7,7 @@ import { LoggedInCustomer } from '../../models/loggedInCustomer';
 })
 export class LoginStateService {
   private loggedInCustomerState = new BehaviorSubject<LoggedInCustomer>(null);
+  
 
   constructor() { }
 
