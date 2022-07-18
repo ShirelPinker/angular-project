@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-store-info',
   templateUrl: './store-info.component.html',
@@ -16,7 +18,7 @@ export class StoreInfoComponent implements OnInit {
   constructor(private loginStateService:LoginStateService, private productsService: ProductsService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => this.isLoggedInCustomer = Boolean(loggedInCustomer))
+    this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).subscribe(loggedInCustomer => this.isLoggedInCustomer = Boolean(loggedInCustomer))
     this.productsService.getProductsCount().subscribe(count => this.productsCount = count.productsCount)
     this.ordersService.getOrdersCount().subscribe(count => this.ordersCount = count.ordersCount)
   }

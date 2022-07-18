@@ -9,7 +9,9 @@ import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { AvailableDeliveyDateValidator } from 'src/app/validators/AvailableDeliveyDateValidator';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-checkout-form',
   templateUrl: './checkout-form.component.html',
@@ -28,11 +30,12 @@ export class CheckoutFormComponent implements OnInit {
   constructor(private cartService: CartService, private ordersService: OrdersService, private cartStateService: CartStateService, private loginStateService: LoginStateService, private router: Router, private availabeDeliveryDate: AvailableDeliveyDateValidator, private customersService: CustomersService) { }
 
   ngOnInit(): void {
-    this.cartStateService.getCartState().pipe(filter(Boolean)).subscribe(cartState => {
+    this.cartStateService.getCartState().pipe(filter(Boolean),untilDestroyed(this)).subscribe(cartState => {
       this.cartId = cartState!.cart.id;
     })
 
     this.loginStateService.getLoggedInCustomerState().pipe(
+      untilDestroyed(this),
       filter(Boolean),
       switchMap((customer) => {
         this.loggedInUserId = customer.id ;

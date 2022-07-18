@@ -8,7 +8,9 @@ import { Product } from 'src/app/models/product';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -38,6 +40,7 @@ export class ProductCardComponent implements OnInit {
     this.activatedroute.data.subscribe(data => { this.mode = data['mode']; })
 
     this.cartStateService.getCartState().pipe(
+      untilDestroyed(this),
       filter(cartState => Boolean(cartState?.cart)),
       tap(cartState => {
         this.cartId = cartState!.cart.id;

@@ -8,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CartItemsService } from 'src/app/services/cart-items.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Mode } from 'src/app/models/modeEnum';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -30,6 +32,7 @@ export class CartComponent implements OnInit {
 
     this.cartItems$ = this.cartStateService.getCartState().pipe(
       filter(Boolean),
+      untilDestroyed(this),
       tap((cartState: CartState) => { this.cartId = cartState!.cart.id }),
       map((cartState: CartState) => cartState!.cartItems))
 

@@ -4,7 +4,9 @@ import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,7 +22,7 @@ export class HeaderComponent implements OnInit {
      private router: Router) { }
 
   ngOnInit(): void {
-    this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
+    this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).subscribe(loggedInCustomer => {
       if (loggedInCustomer == null) {
         this.introductionName = 'guest'
         this.isLoggedIn = false;

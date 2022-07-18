@@ -6,7 +6,9 @@ import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { LoggedInCustomer } from 'src/app/models/loggedInCustomer';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-go-to-shopping',
   templateUrl: './go-to-shopping.component.html',
@@ -20,6 +22,7 @@ export class GoToShoppingComponent implements OnInit {
   ngOnInit(): void {
     this.customerState$ = this.loginStateService.getLoggedInCustomerState()
     this.cartStateService.getCartState().pipe(
+      untilDestroyed(this),
       filter(Boolean),
       map((cartState: CartState) => cartState!.cart))
       .subscribe(cart => {

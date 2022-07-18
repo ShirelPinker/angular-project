@@ -6,7 +6,9 @@ import {saveAs} from 'file-saver';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { filter } from 'rxjs/internal/operators/filter';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-receipt-page',
   templateUrl: './receipt-page.component.html',
@@ -20,7 +22,7 @@ export class ReceiptPageComponent implements OnInit {
   faSeedling=faSeedling;
 
   ngOnInit(): void {
-    this.cartStateService.getCartState().pipe(filter(Boolean)).subscribe((cartState) => this.receiptItems = cartState.cartItems)   
+    this.cartStateService.getCartState().pipe(filter(Boolean)).pipe(untilDestroyed(this)).subscribe((cartState) => this.receiptItems = cartState.cartItems)   
   }
 
   onDownloadReceipt() {

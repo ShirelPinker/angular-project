@@ -6,6 +6,7 @@ import { NewProduct } from 'src/app/models/newProduct';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProductsStateService } from 'src/app/services/states/products-state.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 enum AdminAction {
   Add,
@@ -16,6 +17,7 @@ enum AdminStatus {
   Empty
 }
 
+@UntilDestroy()
 @Component({
   selector: 'app-admin-management',
   templateUrl: './admin-management.component.html',
@@ -52,7 +54,7 @@ export class AdminManagementComponent implements OnInit {
       })
     })
 
-    const products$ = this.productsStateService.getProductsState().pipe(filter(Boolean))
+    const products$ = this.productsStateService.getProductsState().pipe(filter(Boolean),untilDestroyed(this))
     const categories$ = this.categoriesService.getCategories()
 
     combineLatest([products$,categories$])
