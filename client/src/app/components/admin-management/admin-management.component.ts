@@ -97,7 +97,7 @@ export class AdminManagementComponent implements OnInit {
     this.adminAction == AdminAction.Add ?
       this.productsService.addNewProduct(productDetails).subscribe(() => this.clearFields()) :
       this.productsService.updateProduct({ ...productDetails, id: this.productToEditId }).subscribe(() => {
-        this.productsStateService.setProductToEdit(null);
+        // this.productsStateService.setProductToEdit(null);
         this.clearFields()
       })
   }

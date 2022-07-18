@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).subscribe(loggedInCustomer => this.isLoggedInCustomer = Boolean(loggedInCustomer))
     this.signupForm = new UntypedFormGroup({
-      'email': new UntypedFormControl("js@gmail.com", Validators.required),
+      'email': new UntypedFormControl("s@gmail.com", Validators.required),
       'password': new UntypedFormControl("1234567", Validators.required),
     })
   }
