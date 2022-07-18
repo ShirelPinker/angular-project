@@ -7,13 +7,15 @@
 .sideBar {
     width: 28%;
     border-top: 1px solid rgb(125, 158, 184);
+    border-right: 1px solid rgb(125, 158, 184);
+
     padding: 10px;
 
 }
 
 .storeContainer {
     width: 71%;
-    border-left: 1px solid rgb(125, 158, 184);
+    /* border-left: 1px solid rgb(125, 158, 184); */
     border-top: 1px solid rgb(125, 158, 184);
     padding: 20px;
 }
@@ -27,4 +29,14 @@
 
 .searchContainer{
     width: 20%
+}
+.fullSizeStore{
+    float: left;
+    width: 100%;
+    
+  
+}
+
+.minimizeSideBar{
+    display: none;
 }

@@ -3,6 +3,7 @@
     <div class="input-group searchContainer">
         <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search"placeholder="Search" [(ngModel)]="searchWord" (keydown.enter)="searchProduct()"> 
     </div>
+    <button (click)="toggleShow()"></button>
 
     <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
     </app-categories>
@@ -10,11 +11,11 @@
 </div>
 
 <div class="mainContainer">
-    <div class="sideBar">
+    <div [class.minimizeSideBar] = "isShown == false" class="sideBar">
         <app-cart *ngIf="mode!=Mode.Admin"></app-cart>
         <app-admin-management *ngIf="mode==Mode.Admin"></app-admin-management>
     </div>
-    <div class="storeContainer">
+    <div [class.fullSizeStore] = "isShown == false" class="storeContainer">
         <app-products></app-products>
     </div>
 </div>

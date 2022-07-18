@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -15,6 +15,8 @@ import { ProductsStateService } from 'src/app/services/states/products-state.ser
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
+  @Output() pictureLoaded = new EventEmitter();
+
   @Input() productItem: Product = {} as Product;
   hideStream: Observable<any> =this.modalService.onHide.pipe(take(1))
   mode: Mode;
@@ -91,5 +93,9 @@ export class ProductCardComponent implements OnInit {
 
   handleClose(){
     this.productQuantityInput = this.productQuantity
+  }
+
+  onPictureLoaded() {
+    this.pictureLoaded.emit();
   }
 }

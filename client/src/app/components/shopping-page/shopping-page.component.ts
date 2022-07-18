@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ShoppingPageComponent implements OnInit {
   faSearch= faSearch;
+  isShown=true;
   mode:Mode;
   Mode = Mode;
   searchWord: string;
@@ -26,13 +27,17 @@ export class ShoppingPageComponent implements OnInit {
   onCategorySelected(categoryId) {
     this.activeCategory = categoryId;
     this.searchWord = ''
-    this.productsService.getProductsByCategoryId(this.activeCategory).subscribe();
-
+    this.productsService.getProductsByCategoryId(this.activeCategory).subscribe()
   }
 
   searchProduct() {
     this.activeCategory = null;
     this.productsService.getProductsBySearchName(this.searchWord).subscribe();
   }
+  toggleShow() {
+
+    this.isShown = ! this.isShown;
+    
+    }
 
 }

@@ -10,7 +10,8 @@ async function getCartItemsByCartId(cartId) {
 
 async function createNewCart(newCart) {
     const newCartId = await cartsDal.createNewCart(newCart);
-    return newCartId
+    const cart = getCartById(newCartId)
+    return cart;
 }
 
 
@@ -22,10 +23,16 @@ async function updateCartStatus(cartId, cartStatus) {
     await cartsDal.updateCartStatus(cartId, cartStatus);
 }
 
+async function getCartById(cartId){
+   const cart =  await cartsDal.getCartById(cartId);
+    return cart;
+}
+
 module.exports = {
     deleteCartItemsByCartId,
     getCartItemsByCartId,
     createNewCart,
-    updateCartStatus
+    updateCartStatus,
+    getCartById
 
 };

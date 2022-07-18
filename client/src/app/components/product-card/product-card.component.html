@@ -1,7 +1,7 @@
 <div class="card cardContainer">
     <div [class.hoverImg]="mode== Mode.Store" class="img" (click)="onOpenModal(modalTemplate)">
         <fa-icon class="editBtn" (click)="onEditClicked()" *ngIf="mode == Mode.Admin" [icon]="faPencil"></fa-icon>
-        <img class="card-img-top productImg" src={{productItem.imgUrl}}><br>
+        <img class="card-img-top productImg" src={{productItem.imgUrl}} (load)="onPictureLoaded()"><br>
     </div>
     <div class="cardDetailsContainer">
         <div class="card-title">{{productItem.name}}</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap, filter, map, Observable } from 'rxjs';
+import { take, filter, map, Observable, switchMap } from 'rxjs';
 import { CartState } from 'src/app/models/cartState';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -32,8 +32,8 @@ export class GoToShoppingComponent implements OnInit {
   }
 
   onStartShoppingClicked() {
-    this.loginStateService.getLoggedInCustomerState().pipe(
-      concatMap(customer => {
+    this.loginStateService.getLoggedInCustomerState().pipe(take(1),
+      switchMap(customer => {
         return this.cartService.createNewCart(customer!.id)
       }
       )).subscribe(() => this.router.navigate(['/shopping']))

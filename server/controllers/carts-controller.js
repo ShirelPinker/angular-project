@@ -5,8 +5,8 @@ const router = express.Router();
 router.post("/", async (request, response) => {
     const newCart = request.body;
     try {
-        const newCartId = await cartsLogic.createNewCart(newCart);
-        response.json(newCartId)
+        const cart = await cartsLogic.createNewCart(newCart);
+        response.json(cart)
     }
     catch (e) {
         console.error(e);

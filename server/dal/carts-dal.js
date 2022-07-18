@@ -8,9 +8,9 @@ async function getCartsByCustomerId(customerId){
 }
 
 async  function createNewCart(newCart){
-    const sql = `insert into shopdb.carts(customer_id, created_at, is_active)` +
-    `values(?, ?, ?)`
-    const parameters = [newCart.customerId, newCart.createdAt, newCart.isActive];
+    const sql = `insert into shopdb.carts(customer_id, is_active)` +
+    `values(?, ?)`
+    const parameters = [newCart.customerId, newCart.isActive];
     const response = await connection.executeWithParameters(sql, parameters);
     return response.insertId;
 }
@@ -22,8 +22,16 @@ async function updateCartStatus(cartId, cartStatus) {
     await connection.executeWithParameters(sql, parameters);
 }
 
+async function getCartById(cartId){
+    const sql = "SELECT id, customer_id as customerId, created_at as createdAt, is_active as isActive FROM shopdb.carts where id=? order by created_at desc"
+    const parameters = [cartId];
+    const cart = await connection.executeWithParameters(sql, parameters);
+    return cart;
+}
+
 module.exports = {
     getCartsByCustomerId,
     createNewCart,
-    updateCartStatus
+    updateCartStatus,
+    getCartById
     };

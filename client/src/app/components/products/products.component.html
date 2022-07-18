@@ -1,4 +1,6 @@
 <div class="products-container">
-<app-product-card class="productCard" *ngFor="let product of (products$ | async)" [productItem]="product" ></app-product-card>
-
+<app-product-card [class.hideCard] = "loading == true" class="productCard" *ngFor="let product of (products$ | async)" [productItem]="product" (pictureLoaded)="onPictureLoaded()" ></app-product-card>
+<div *ngIf="loading==true" class="spinner-border text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>

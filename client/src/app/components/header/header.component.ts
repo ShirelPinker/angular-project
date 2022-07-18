@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
+import { ProductsStateService } from 'src/app/services/states/products-state.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,10 @@ export class HeaderComponent implements OnInit {
   introductionName: String;
   faSeedling= faSeedling;
   isLoggedIn;
-  constructor(private loginStateService:LoginStateService, private router: Router) { }
+  constructor(private loginStateService:LoginStateService,
+     private productsStateService: ProductsStateService,
+     private cartStateService : CartStateService,
+     private router: Router) { }
 
   ngOnInit(): void {
     this.loginStateService.getLoggedInCustomerState().subscribe(loggedInCustomer => {
@@ -31,6 +36,8 @@ export class HeaderComponent implements OnInit {
   }
   
   onSignOutClicked(){
+    this.cartStateService.updateCartState(null)
+    this.productsStateService.updateProductsState(null)
     this.loginStateService.updateCustomerState(null);
     this.router.navigate(['/main']) 
     

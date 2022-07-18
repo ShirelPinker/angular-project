@@ -15,15 +15,12 @@ export class CartService {
   constructor(private http: HttpClient, private cartStateService: CartStateService) { }
 
   createNewCart(customerId: number): any {
-    const currentDate = new Date().toLocaleDateString()
     const newCart: NewCart = {
       customerId: customerId,
-      createdAt: currentDate,
       isActive: true
     }
     return this.http.post(`http://localhost:3001/api/carts`, newCart).pipe(
-      tap((newCartId: number) => {
-        const cart: Cart = { ...newCart, id: newCartId }
+      tap((cart: Cart) => {
         this.cartStateService.updateCartState({ cart, cartItems: [] })
       }))
   }
@@ -41,10 +38,10 @@ export class CartService {
         }))
   }
 
-  deActivateCart(cartId:number) {
+  deActivateCart(cartId: number) {
     return this.http.put(`http://localhost:3001/api/carts/${cartId}`, { isActive: false }).pipe(
       tap(() => {
-          this.cartStateService.deActivateCart()
+        this.cartStateService.deActivateCart()
       }))
 
   }
