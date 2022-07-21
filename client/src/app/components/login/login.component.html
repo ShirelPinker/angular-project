@@ -20,6 +20,11 @@
             </span>
         </div>
         
+        <span class="errorMsg loginError"
+         *ngIf="signupForm.get('email')?.valid && signupForm.get('password')?.valid && loginFailed">
+            {{loginErrorMsg}}
+        </span>
+        
         <div class="actionBtnsContainer">
             <button class="btn btn-primary actionBtn" (click)="onLoginClicked()">Login</button>
             <div>Dont have an account? <button class="sighUpBtn"  (click)="onSignUpClicked()">signup</button> </div>

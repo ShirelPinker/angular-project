@@ -14,6 +14,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 export class LoginComponent implements OnInit {
   signupForm: UntypedFormGroup;
   isLoggedInCustomer: boolean = false;
+  loginFailed=false;
+  loginErrorMsg = '';
 
   constructor(private loginStateService: LoginStateService, private customersService: CustomersService, private router: Router) { }
 
@@ -33,7 +35,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/shopping/admin'])
 
       }
-    })
+    },
+      error => {
+        this.loginFailed = true;
+        this.loginErrorMsg = error.error;
+        console.log('login faild ' + error.error);
+        
+      }
+    )
   }
 
   onSignUpClicked() {

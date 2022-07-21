@@ -45,6 +45,7 @@ export class ProductsStateService {
     if (!this.productsState) return;
 
     const newProductState = { ...this.productsState }
+
     newProductState.productToEdit = productToEdit;
     this.updateProductsState(newProductState)
   }
@@ -56,7 +57,7 @@ export class ProductsStateService {
     const updatedProducts = newProductState.products.map(product => {
       if (product.id == editedProduct?.id) {
         return editedProduct
-      } else { return product }
+      } else { return {...product }}
     })
     newProductState.products = updatedProducts
     this.updateProductsState(newProductState)

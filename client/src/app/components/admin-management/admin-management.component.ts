@@ -24,7 +24,7 @@ enum AdminStatus {
   styleUrls: ['./admin-management.component.css']
 })
 export class AdminManagementComponent implements OnInit {
-  signupForm: UntypedFormGroup;
+  productForm: UntypedFormGroup;
   adminAction: AdminAction = AdminAction.Add;
   categories: Category[] = [];
   productToEditId: number;
@@ -35,7 +35,7 @@ export class AdminManagementComponent implements OnInit {
   constructor(private productsStateService: ProductsStateService, private categoriesService: CategoriesService, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.signupForm = new UntypedFormGroup({
+    this.productForm = new UntypedFormGroup({
       'name': new UntypedFormControl(null, {
         validators: [Validators.required],
         updateOn: 'blur'
@@ -54,57 +54,65 @@ export class AdminManagementComponent implements OnInit {
       })
     })
 
-    const products$ = this.productsStateService.getProductsState().pipe(filter(Boolean),untilDestroyed(this))
+    const products$ = this.productsStateService.getProductsState().pipe(filter(Boolean), untilDestroyed(this))
     const categories$ = this.categoriesService.getCategories()
 
-    combineLatest([products$,categories$])
-    .pipe(tap(([productsState, categories])=> this.categories = categories))
+    combineLatest([products$, categories$])
+      .pipe(tap(([productsState, categories]) => this.categories = categories))
       .subscribe(
         ([productsState, categories]) => {
           if (productsState.productToEdit) {
             this.adminStatus = AdminStatus.InAction;
             this.productToEditId = productsState.productToEdit.id;
             this.adminAction = AdminAction.Edit;
-            this.signupForm.controls['name'].setValue(productsState.productToEdit.name);
-            this.signupForm.controls['price'].setValue(productsState.productToEdit.price);
-            this.signupForm.controls['imgUrl'].setValue(productsState.productToEdit.imgUrl);
+            this.productForm.controls['name'].setValue(productsState.productToEdit.name);
+            this.productForm.controls['price'].setValue(productsState.productToEdit.price);
+            this.productForm.controls['imgUrl'].setValue(productsState.productToEdit.imgUrl);
             let categoryIndex;
             for (let i = 0; i < categories.length; i++) {
               if (categories[i].id == productsState.productToEdit.categoryId) {
                 categoryIndex = i;
               }
             }
-            this.signupForm.controls['category'].setValue(categories[categoryIndex].name);
+            this.productForm.controls['category'].setValue(categories[categoryIndex].name);
           }
         })
   }
 
   onAddNewProduct() {
     this.adminStatus = AdminStatus.InAction;
-    this.signupForm.reset();
+    this.productForm.reset();
     this.adminAction = AdminAction.Add
   }
   onSave() {
-    const category = this.categories.find(category => category.name == this.signupForm.value.category)
+    const category = this.categories.find(category => category.name == this.productForm.value.category)
 
     const productDetails: NewProduct = {
-      name: this.signupForm.value.name,
+      name: this.productForm.value.name,
       categoryId: category!.id,
-      price: this.signupForm.value.price,
-      imgUrl: this.signupForm.value.imgUrl
+      price: this.productForm.value.price,
+      imgUrl: this.productForm.value.imgUrl
     }
 
     this.adminAction == AdminAction.Add ?
-      this.productsService.addNewProduct(productDetails).subscribe(() => this.clearFields()) :
-      this.productsService.updateProduct({ ...productDetails, id: this.productToEditId }).subscribe(() => {
-        // this.productsStateService.setProductToEdit(null);
-        this.clearFields()
+      this.productsService.addNewProduct(productDetails).subscribe(() => this.clearFields(),
+        error => {
+          alert('Failed to add product');
+          console.log('Failed to add product ' + error.error);
+
+        }) :
+      this.productsService.updateProduct({ ...productDetails, id: this.productToEditId }).subscribe({
+        next: () => this.clearFields(),
+        error: (error) => {
+          alert(error.error);
+          console.log('Failed to edit product ' + error.error);
+        }
       })
   }
 
   clearFields() {
     this.productsStateService.setProductToEdit(null);
-    this.signupForm.reset();
+    this.productForm.reset();
     this.adminStatus = AdminStatus.Empty;
   }
 }

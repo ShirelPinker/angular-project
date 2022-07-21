@@ -22,7 +22,7 @@
 
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched{
     border: 1px solid red
 }
 
@@ -36,6 +36,9 @@ input.ng-invalid.ng-touched {
 
 .errorMsg{
     font-size: 13px;
+}
+.loginError{
+   color: red
 }
 
 .goToShopComponent{

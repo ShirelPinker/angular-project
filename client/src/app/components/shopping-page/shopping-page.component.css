@@ -40,3 +40,9 @@
 .minimizeSideBar{
     display: none;
 }
+
+.toggleBtn{
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
