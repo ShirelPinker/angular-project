@@ -2,44 +2,41 @@ const cartsLogic = require("../logic/carts-logic");
 const express = require("express");
 const router = express.Router();
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response, next) => {
     const newCart = request.body;
     try {
         const cart = await cartsLogic.createNewCart(newCart);
         response.json(cart)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.get("/:id/cartItems", async (request, response) => {
+router.get("/:id/cartItems", async (request, response, next) => {
     const cartId = request.params.id;
     try {
         const cartItems = await cartsLogic.getCartItemsByCartId(cartId);
         response.json(cartItems)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
 
-router.delete("/:id/cartItems", async (request, response) => {
+router.delete("/:id/cartItems", async (request, response, next) => {
     const deletedCartId = request.params.id;
     try {
         await cartsLogic.deleteCartItemsByCartId(deletedCartId);
         response.json()
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.put("/:id", async (request, response) => {
+router.put("/:id", async (request, response, next) => {
     const cartStatus = request.body;
     const cartId = request.params.id;
     try {
@@ -47,8 +44,7 @@ router.put("/:id", async (request, response) => {
         response.json()
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 

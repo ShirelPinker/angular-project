@@ -1,9 +1,10 @@
 const customersLogic = require("../logic/customers-logic");
 const express = require("express");
+const ServerError = require("../errors/ServerError");
 
 const router = express.Router();
 
-router.get("/", async (request, response) => {
+router.get("/", async (request, response, next) => {
     try {
 
         if (request.query.email) {
@@ -17,20 +18,15 @@ router.get("/", async (request, response) => {
             response.json(customer)
         }
         else {
-            const errorMsg = "query param doesnt exist"
-            console.error(errorMsg);
-            response.status(400).send(errorMsg)
+            throw new ServerError("query param doesnt exist", { query })
         }
-
-
-    } catch (error) {
-        console.error(e);
-        response.status(500).send(e.message)
+    } catch (e) {
+        next(e)
     }
 
 });
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response, next) => {
     let customerRegistrationData = request.body;
 
     try {
@@ -38,12 +34,11 @@ router.post("/", async (request, response) => {
         response.json(customer);
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.post("/login", async (request, response) => {
+router.post("/login", async (request, response, next) => {
     let customerLoginData = request.body;
 
     try {
@@ -51,24 +46,22 @@ router.post("/login", async (request, response) => {
         response.json(customer);
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.get("/byToken", async (request, response) => {
+router.get("/byToken", async (request, response, next) => {
     const token = request.headers["authorization"];
     try {
         const customer = await customersLogic.getCustomerByToken(token);
         response.json(customer)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 })
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", async (request, response, next) => {
 
     try {
         if (request.query.addressOnly) {
@@ -84,13 +77,12 @@ router.get("/:id", async (request, response) => {
 
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 })
 
 
-router.get("/:id/carts", async (request, response) => {
+router.get("/:id/carts", async (request, response, next) => {
     const customerId = request.params.id;
     const isMostRecentOnly = request.query.mostRecent;
 
@@ -99,12 +91,11 @@ router.get("/:id/carts", async (request, response) => {
         response.json(cart)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 })
 
-router.get("/:id/orders", async (request, response) => {
+router.get("/:id/orders", async (request, response, next) => {
     const customerId = request.params.id;
     if (request.query.mostRecent) {
         try {

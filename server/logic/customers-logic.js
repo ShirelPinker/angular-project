@@ -6,10 +6,11 @@ const crypto = require("crypto");
 const config = require('../config/config.json');
 const jwt = require('jsonwebtoken')
 const jwt_decode = require("jwt-decode");
+const ServerError = require("../errors/ServerError");
 
 async function addCustomer(customerRegistrationData) {
     if (await customersDal.isUserNameExist(customerRegistrationData)) {
-        throw new Error("user already exist");
+        throw new ServerError("user already exist", { email: customerRegistrationData.email });
     }
     validateUserData(customerRegistrationData);
     customerRegistrationData.password = encryptPassword(customerRegistrationData.password);
@@ -26,7 +27,7 @@ async function login(customerLoginData) {
     let customerData = await customersDal.login(customerLoginData);
 
     if (!customerData) {
-        throw new Error("One or more details are incorrect");
+        throw new ServerError("One or more details are incorrect", {});
     }
 
     let token = jwt.sign({ customerId: customerData.id, isAdmin: customerData.isAdmin }, config.secret)
@@ -65,13 +66,13 @@ async function getLastOrderByCustomerId(customerId) {
 
 function validateUserData(customerRegistrationData) {
     if (!customerRegistrationData.email) {
-        throw new Error("Invalid email")
+        throw new ServerError("Invalid email", { email: customerRegistrationData.email })
     }
     if (!customerRegistrationData.password) {
-        throw new Error("Invalid password")
+        throw new ServerError("Invalid password", { password: customerRegistrationData.password })
     }
     if (customerRegistrationData.password.length < 6) {
-        throw new Error("password is too short")
+        throw new ServerError("password is too short", { password: customerRegistrationData.password })
     }
 }
 

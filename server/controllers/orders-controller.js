@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 
-router.get("/", async (request, response) => {
+router.get("/", async (request, response, next) => {
     try {
 
         if (request.query.countOnly) {
@@ -16,19 +16,15 @@ router.get("/", async (request, response) => {
             response.json(orders)
         }
         else {
-            const errorMsg = "query param doesnt exist"
-            console.error(errorMsg);
-            response.status(400).send(errorMsg)
+            throw new ServerError("query param doesnt exist", { query })
         }
     }
-
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response, next) => {
     let order = request.body;
 
     try {
@@ -36,8 +32,7 @@ router.post("/", async (request, response) => {
         response.json();
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 

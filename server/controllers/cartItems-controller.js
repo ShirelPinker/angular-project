@@ -2,21 +2,18 @@ const cartItemsLogic = require("../logic/cartItems-logic");
 const express = require("express");
 const router = express.Router();
 
-
-
-router.post("/", async (request, response) => {
+router.post("/", async (request, response, next) => {
     const addedProduct = request.body;
     try {
-       const cartItem= await cartItemsLogic.addProductToCart(addedProduct);
+        const cartItem = await cartItemsLogic.addProductToCart(addedProduct);
         response.json(cartItem)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.put("/:id", async (request, response) => {
+router.put("/:id", async (request, response, next) => {
     const editedProductId = request.params.id;
     const newQuantity = request.body.quantity
     try {
@@ -24,20 +21,18 @@ router.put("/:id", async (request, response) => {
         response.json()
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", async (request, response, next) => {
     const deletedCartItemId = request.params.id;
     try {
         await cartItemsLogic.deleteCartItem(deletedCartItemId);
         response.json()
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 

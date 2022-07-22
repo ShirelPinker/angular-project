@@ -3,20 +3,19 @@ const express = require("express");
 const router = express.Router();
 
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response, next) => {
     let newProduct = request.body;
     try {
         const product = await productsLogic.addProduct(newProduct);
         response.json(product)
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
 
-router.put("/:id", async (request, response) => {
+router.put("/:id", async (request, response, next) => {
     response.status(500).send('e.message')
 
     const updatedProduct = request.body;
@@ -25,12 +24,11 @@ router.put("/:id", async (request, response) => {
         response.json()
     }
     catch (e) {
-        console.error(e);
-        response.status(500).send(e.message)
+        next(e)
     }
 });
 
-router.get("/", async (request, response) => {
+router.get("/", async (request, response, next) => {
     try {
 
         if (request.query.countOnly) {
@@ -48,17 +46,11 @@ router.get("/", async (request, response) => {
             response.json(products)
         }
         else {
-            const errorMsg = "query params doesnt exist"
-            console.error(errorMsg);
-            response.status(400).send(errorMsg)
+            throw new ServerError("query param doesnt exist", { query })
         }
-
-
-    } catch (error) {
-        console.error(e);
-        response.status(500).send(e.message)
+    } catch (e) {
+        next(e)
     }
-
 });
 
 

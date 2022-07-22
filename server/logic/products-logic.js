@@ -1,4 +1,5 @@
 const productsDal = require("../dal/products-dal");
+const ServerError = require("../errors/ServerError");
 
 
 async function addProduct(newProduct) {
@@ -34,7 +35,7 @@ async function getProductsByCategoryId(categoryId) {
 function validateProductData(newProduct) {
     if (newProduct.name == "" || newProduct.price == "" ||
         newProduct.categoryId == "" || newProduct.imgUrl == "") {
-        throw new Error("All feilds should be filled")
+        throw new ServerError("All feilds must be filled", { newProduct })
     }
 }
 
