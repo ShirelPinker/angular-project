@@ -4,6 +4,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ServerError } from 'src/app/models/ServerError';
 
 @UntilDestroy()
 @Component({
@@ -14,7 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 export class LoginComponent implements OnInit {
   signupForm: UntypedFormGroup;
   isLoggedInCustomer: boolean = false;
-  loginFailed=false;
+  loginFailed = false;
   loginErrorMsg = '';
 
   constructor(private loginStateService: LoginStateService, private customersService: CustomersService, private router: Router) { }
@@ -27,20 +28,16 @@ export class LoginComponent implements OnInit {
     })
   }
 
-
   onLoginClicked() {
     const customerLoginData = { email: this.signupForm.value.email, password: this.signupForm.value.password }
     this.customersService.login(customerLoginData).subscribe((response) => {
       if (!response) {
         this.router.navigate(['/shopping/admin'])
-
       }
     },
-      error => {
+      (error: ServerError) => {
         this.loginFailed = true;
-        this.loginErrorMsg = error.error;
-        console.log('login faild ' + error.error);
-        
+        this.loginErrorMsg = error.msg;
       }
     )
   }

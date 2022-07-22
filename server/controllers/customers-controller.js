@@ -40,7 +40,7 @@ router.post("/", async (request, response, next) => {
 
 router.post("/login", async (request, response, next) => {
     let customerLoginData = request.body;
-
+    
     try {
         const customer = await customersLogic.login(customerLoginData);
         response.json(customer);

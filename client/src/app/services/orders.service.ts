@@ -14,6 +14,7 @@ export class OrdersService {
   getCustomerLastOrder(customerId: number): Observable<Order> {
     return this.http.get<Order>(`http://localhost:3001/api/customers/${customerId}/orders?mostRecent=true`)
   }
+  
   getOrdersCount(): Observable<any> {
     return this.http.get(`http://localhost:3001/api/orders/?countOnly=true`)
 
