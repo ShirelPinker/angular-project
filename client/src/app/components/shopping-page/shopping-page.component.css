@@ -15,26 +15,28 @@
 
 .storeContainer {
     width: 71%;
-    /* border-left: 1px solid rgb(125, 158, 184); */
     border-top: 1px solid rgb(125, 158, 184);
     padding: 20px;
 }
 
-.shoppingHeader{
-    display: flex;
-    margin: 25px;
-    align-items: center;
-    gap: 145px;
-}
+
 
 .searchContainer{
-    width: 20%
+    min-width: 150px;
+    width: 250px;
+    height: 30px;
+    margin: auto 0 21px 6px;
+
 }
+
 .fullSizeStore{
     float: left;
     width: 100%;
-    
-  
+}
+
+.minHeight{
+    margin-top: 10px;
+    min-height: 30px;
 }
 
 .minimizeSideBar{

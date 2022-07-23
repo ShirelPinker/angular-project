@@ -1,19 +1,34 @@
-.categoriesContainer{
-display: flex;
-}
-
-.category{
+.category {
     margin: 16px;
     font-family: cursive;
     font-size: 22px;
     color: #6b7176;
 }
-.selectedCategory{
-color: #333536; 
+
+.selectedCategory {
+    color: #333536;
 }
 
 button {
     all: unset;
     cursor: pointer;
-  }
-  
+}
+
+ul>form>input {
+    max-width: 250px;
+    height: 40px;
+    margin: auto 0;
+}
+
+.navbar-toggler {
+    border: none !important;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+form {
+    margin-right: 183px;
+}

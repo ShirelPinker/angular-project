@@ -1,8 +1,9 @@
 .headerContainer {
-    height: 38%;
+    height: 286px;
     width: 100%;
     position: relative;
-    min-height: 268px;
+    min-height: 286px;
+    overflow: hidden;
 }
 
 .upperHeader {
@@ -27,7 +28,9 @@
     opacity: 0.8;
     object-fit: cover;
     width: 100%;
-    height: 79%;
+    height: 100%;
+    overflow: hidden;
+    max-height: 214px;
 }
 
 .introduction {

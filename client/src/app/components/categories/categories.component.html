@@ -1,3 +1,22 @@
-<div class="categoriesContainer">
-<button [class.selectedCategory] = "activeCategory === category.id" class="category" *ngFor="let category of (categories$ | async) " (click)="onCategoryClicked(category.id)">{{category.name}}</button>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid ">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <form class="d-flex">
+                    <input class=" form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search"
+                        [formControl]="searchWord" (keydown.enter)="searchProduct()" (blur)="onSearchWordBlur()">
+                </form>
+                <li class="nav-item" *ngFor="let category of (categories$ | async)">
+                    <button [class.selectedCategory]="activeCategory === category.id" class="category nav-link"
+                        (click)="onCategoryClicked(category.id)">{{category.name}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
