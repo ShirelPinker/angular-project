@@ -4,9 +4,18 @@ const ServerError = require("../errors/ServerError");
 
 const router = express.Router();
 
+router.use("/:id*", (req, res, next) => {
+    const id = Number(req.params.id)
+    const authId = Number(req.auth?.customerId)
+    if (!id || id === authId) {
+        next()
+    } else {
+        throw new ServerError("Auth Id doesn't match path id")
+    }
+})
+
 router.get("/", async (request, response, next) => {
     try {
-
         if (request.query.email) {
             const email = request.query.email;
             let customer = await customersLogic.getCustomerByEmail(email);
@@ -40,7 +49,7 @@ router.post("/", async (request, response, next) => {
 
 router.post("/login", async (request, response, next) => {
     let customerLoginData = request.body;
-    
+
     try {
         const customer = await customersLogic.login(customerLoginData);
         response.json(customer);
@@ -108,7 +117,5 @@ router.get("/:id/orders", async (request, response, next) => {
 
     }
 })
-
-
 
 module.exports = router;
