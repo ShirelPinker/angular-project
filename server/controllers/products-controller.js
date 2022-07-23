@@ -1,7 +1,7 @@
 const productsLogic = require("../logic/products-logic");
 const express = require("express");
 const router = express.Router();
-
+const ServerError = require("../errors/ServerError");
 
 router.post("/", async (request, response, next) => {
     let newProduct = request.body;
@@ -38,13 +38,16 @@ router.get("/", async (request, response, next) => {
             const products = await productsLogic.getProductsByName(searchedProduct);
             response.json(products)
         }
+        else if (request.query.searchedProduct === "") {
+            response.json([])
+        }
         else if (request.query.categoryId) {
             const categoryId = request.query.categoryId;
             const products = await productsLogic.getProductsByCategoryId(categoryId);
             response.json(products)
         }
         else {
-            throw new ServerError("query param doesnt exist", { query })
+            throw new ServerError("query param doesnt exist", { query: request.query })
         }
     } catch (e) {
         next(e)

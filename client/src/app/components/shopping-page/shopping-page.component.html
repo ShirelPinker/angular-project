@@ -1,7 +1,12 @@
 <div class="shoppingHeader">
  
     <div class="input-group searchContainer">
-        <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search"placeholder="Search" [(ngModel)]="searchWord" (keydown.enter)="searchProduct()"> 
+        <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" placeholder="Search"
+         [formControl]="searchWord" (keydown.enter)="searchProduct()"
+         (blur)="onSearchWordBlur()"> 
+        <span class="errorMsg" *ngIf="searchWord?.invalid &&  searchWord?.dirty">
+            Please enter a search
+        </span>
     </div>
     
     <app-categories [activeCategory]="activeCategory" (categorySelected)="onCategorySelected($event)">
