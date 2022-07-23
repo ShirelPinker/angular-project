@@ -16,8 +16,6 @@ router.post("/", async (request, response, next) => {
 
 
 router.put("/:id", async (request, response, next) => {
-    response.status(500).send('e.message')
-
     const updatedProduct = request.body;
     try {
         await productsLogic.updateProduct(updatedProduct);

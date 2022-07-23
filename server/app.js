@@ -7,12 +7,16 @@ const cartItemsController = require("./controllers/cartItems-controller");
 const cartsController = require("./controllers/carts-controller");
 const ordersController = require("./controllers/orders-controller");
 const errorHandler = require("./errors/errorHandler")
+const loginFilter = require('./filters/login-filter');
+
 
 
 const server = express();
 
 
 server.use(cors({ origin: "http://localhost:4200" }));
+server.use(loginFilter());
+
 server.use(express.json());
 server.use("/api/customers", customersController);
 server.use("/api/products", productsController);

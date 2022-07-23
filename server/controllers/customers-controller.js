@@ -103,8 +103,7 @@ router.get("/:id/orders", async (request, response, next) => {
             response.json(lastOrder)
         }
         catch (e) {
-            console.error(e);
-            response.status(500).send(e.message)
+            next(e)
         }
 
     }

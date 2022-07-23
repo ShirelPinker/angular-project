@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       }
     },
       (error: ServerError) => {
+        if (!error.shouldDisplay) return
         this.loginFailed = true;
         this.loginErrorMsg = error.msg;
       }
