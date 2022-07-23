@@ -1,3 +1,10 @@
 .min-height{
     min-height:350px;
 }
+
+.mainPage{
+    height: 62%;
+}
+.rowHeight{
+    height: 100%;
+}

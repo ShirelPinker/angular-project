@@ -1,14 +1,3 @@
 div{
-    height: 100%;
-}
-
-
-#A{
-    background-color: yellow;
-}
-#B{
-    background-color: red;
-}
-#C{
-    background-color: green;
+    height: 100vh;
 }

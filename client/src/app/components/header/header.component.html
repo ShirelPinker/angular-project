@@ -1,12 +1,14 @@
 <div class="headerContainer container">
     <div class="upperHeader">
-        <div (click)="onLogoClicked()" class="logoName headerLeft">Plants <fa-icon [icon]="faSeedling"></fa-icon>
+        <div class="headerLeft" (click)="onLogoClicked()">
+            <div >Plants</div>
+            <fa-icon [icon]="faSeedling"></fa-icon>
         </div>
 
         <div class="headerRight">
             <div class="introContainer">
-                <h1 class="introduction">Hello, {{introductionName}}</h1>
-                <div>
+                <div class="introduction">Hello, {{introductionName}}</div>
+                <div class="contactUs">
                     Contact us: +1 568 588 958
                 </div>
             </div>
