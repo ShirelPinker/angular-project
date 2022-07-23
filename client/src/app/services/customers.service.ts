@@ -27,10 +27,15 @@ export class CustomersService {
       .pipe(switchMap((customerResponse: LoggedInCustomerResponse) => this.updateLoginUser(customerResponse)))
   }
 
+  loginByToken(): Observable<CartState> {
+    return this.http.get<LoggedInCustomerResponse>("http://localhost:3001/api/customers/byToken")
+      .pipe(switchMap((customerResponse: LoggedInCustomerResponse) => this.updateLoginUser(customerResponse)))
+  }
+
   private updateLoginUser(customerResponse: LoggedInCustomerResponse): Observable<CartState> {
     return of(customerResponse)
       .pipe(
-        tap((customerResponse) => localStorage.setItem('token', customerResponse.token)),//maybe add local storage service and do it there
+        tap((customerResponse) => localStorage.setItem('token', customerResponse.token)),
         map(customerResponse => {
           const decodedToken: any = jwt_decode(customerResponse.token)
           return {

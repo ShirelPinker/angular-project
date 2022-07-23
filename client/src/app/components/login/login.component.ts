@@ -4,7 +4,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { LoginStateService } from 'src/app/services/states/login-state.service';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ServerError } from 'src/app/models/ServerError';
+import { ServerError } from 'src/app/models/serverError';
 
 @UntilDestroy()
 @Component({

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -31,6 +31,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { CustomersService } from './services/customers.service';
 
 
 @NgModule({
@@ -70,7 +73,25 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (customersService: CustomersService) => () => {
+        if (!localStorage.getItem('token')) {
+          return of()
+        }
+
+        return customersService.loginByToken().pipe(
+          catchError(() => {
+            localStorage.removeItem('token')
+            return of()
+          }))
+      },
+      deps: [CustomersService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

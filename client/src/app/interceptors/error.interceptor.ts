@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { ServerError } from '../models/ServerError';
+import { ServerError } from '../models/serverError';
 
 enum ErrorStatus {
   NoResponse = 0,
@@ -23,7 +23,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private toastr: ToastrService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(catchError((errorResponse: HttpErrorResponse) => {
+    return next.handle(request).pipe(
+      catchError((errorResponse: HttpErrorResponse) => {
       const error = this.errorHandler(errorResponse);
       throw error
     }));

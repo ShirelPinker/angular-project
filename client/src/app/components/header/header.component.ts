@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
     this.cartStateService.updateCartState(null)
     this.productsStateService.updateProductsState(null)
     this.loginStateService.updateCustomerState(null);
+    localStorage.removeItem('token')
     this.router.navigate(['/main']) 
     
   }
