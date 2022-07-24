@@ -71,7 +71,7 @@ function validateUserData(customerRegistrationData) {
     if (!customerRegistrationData.password) {
         throw new ServerError("Invalid password", { password: customerRegistrationData.password })
     }
-    if (customerRegistrationData.password.length < 6) {
+    if (customerRegistrationData.password.length < 7) {
         throw new ServerError("password is too short", { password: customerRegistrationData.password })
     }
 }

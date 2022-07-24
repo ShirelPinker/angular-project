@@ -29,11 +29,11 @@ export class RegisterFirstStepComponent implements OnInit {
       }),
       'passwordsFeilds': new UntypedFormGroup({
         'password': new UntypedFormControl(null, {
-          validators: Validators.required,
+          validators: [Validators.required,Validators.minLength(7)],
           updateOn: 'blur'
         }),
         'confirmedPassword': new UntypedFormControl(null, {
-          validators: Validators.required,
+          validators:[Validators.required,Validators.minLength(7)],
           updateOn: 'blur'
         })
       }, { validators: passwordsMatchValidator, updateOn: 'blur' })
