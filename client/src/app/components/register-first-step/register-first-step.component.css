@@ -9,6 +9,7 @@
     border-radius: 15px;
     background-color: rgb(142 196 231 / 13%);
     padding: 48px;
+    min-width: 470px;
 }
 
 .formContainer{
@@ -33,4 +34,9 @@ input.ng-invalid.ng-touched{
 
 .errorMsg{
     font-size: 13px;
+    color: rgb(241 4 4 / 87%);
+
+}
+.registerInput{
+    min-width: 185px;
 }

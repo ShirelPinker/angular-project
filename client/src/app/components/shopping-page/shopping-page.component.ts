@@ -14,7 +14,6 @@ export class ShoppingPageComponent implements OnInit {
   isShown = true;
   mode: Mode;
   Mode = Mode;
-  activeCategory: number | null;
 
   constructor(private activatedroute: ActivatedRoute) { }
 

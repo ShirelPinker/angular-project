@@ -28,7 +28,7 @@ export class CustomersService {
   }
 
   loginByToken(): Observable<CartState> {
-    return this.http.get<LoggedInCustomerResponse>("http://localhost:3001/api/customers/byToken")
+    return this.http.get<LoggedInCustomerResponse>("http://localhost:3001/api/customers/loginByToken")
       .pipe(switchMap((customerResponse: LoggedInCustomerResponse) => this.updateLoginUser(customerResponse)))
   }
 

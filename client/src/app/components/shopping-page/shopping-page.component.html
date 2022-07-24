@@ -1,6 +1,5 @@
 <div class="minHeight">
-    <app-categories [activeCategory]="activeCategory">
-    </app-categories>
+    <app-categories></app-categories>
 </div>
 <button class="toggleBtn" (click)="toggleShow()">
     <fa-icon *ngIf="!isShown" [icon]="faAngleRight"></fa-icon>
@@ -8,7 +7,6 @@
 
 </button>
 
-<!-- <div class="mainContainer"> -->
 <div class="container">
     <div class="row gy-5">
         <div  [class.minimizeSideBar]="isShown == false" class="sideBar col-lg-4">

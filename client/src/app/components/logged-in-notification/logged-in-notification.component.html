@@ -1,7 +1,7 @@
 <div class="notificationMsg" *ngIf="cartStatus==CartStatus.ActiveCart">
     You have an open cart from <br>
     {{cartCreatedDate | date:'mediumDate'}}, 
-    <br> current total price is: {{cartTotalPrice}}</div>
+    <br> current total price is: {{cartTotalPrice}}$</div>
 <div class="notificationMsg" *ngIf="cartStatus==CartStatus.InActiveCart"> Your last purchase was on {{lastOrderDate}}
 </div>
 <div class="notificationMsg" *ngIf="cartStatus==CartStatus.NoCart"> Welcome {{newUserName}} </div>

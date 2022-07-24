@@ -59,7 +59,7 @@ router.post("/login", async (request, response, next) => {
     }
 });
 
-router.get("/byToken", async (request, response, next) => {
+router.get("/loginByToken", async (request, response, next) => {
     const token = request.headers["authorization"];
     try {
         const customer = await customersLogic.getCustomerByToken(token);

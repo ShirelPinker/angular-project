@@ -2,7 +2,7 @@
 
     <form class="formContainer" [formGroup]="signupForm">
 
-        <div>
+        <div class="registerInput">
             <label for="city">city</label>
             <select class="form-select" formControlName="city">
                 <option *ngFor="let city of cities" [ngValue]="city">
@@ -14,7 +14,7 @@
             </span>
         </div>
 
-        <div>
+        <div class="registerInput">
             <label for="street">Street</label>
             <input type="text" id="street" formControlName="street" class="form-control">
             <span class="errorMsg" *ngIf="!signupForm.get('street')?.valid &&  signupForm.get('street')?.touched">
@@ -22,7 +22,7 @@
             </span>
         </div>
 
-        <div>
+        <div class="registerInput">
             <label for="firstName"> First Name</label>
             <input type="text" id="firstName" formControlName="firstName" class="form-control">
             <span class="errorMsg" *ngIf="!signupForm.get('firstName')?.valid &&  signupForm.get('firstName')?.touched">
@@ -30,7 +30,7 @@
             </span>
         </div>
 
-        <div>
+        <div class="registerInput">
             <label for="lastName"> Last Name </label>
             <input type="text" id="lastName" formControlName="lastName" class="form-control">
             <span class="errorMsg" *ngIf="!signupForm.get('firstName')?.valid &&  signupForm.get('firstName')?.touched">

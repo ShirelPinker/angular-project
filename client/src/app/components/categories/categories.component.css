@@ -6,7 +6,7 @@
 }
 
 .selectedCategory {
-    color: #333536;
+    color: #333536 !important;
 }
 
 button {
@@ -15,7 +15,7 @@ button {
 }
 
 ul>form>input {
-        max-width: 250px;
+    max-width: 250px;
     height: 40px;
     margin: auto 0;
 }

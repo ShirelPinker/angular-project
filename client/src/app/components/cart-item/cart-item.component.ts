@@ -37,7 +37,4 @@ export class CartItemComponent implements OnInit, OnChanges {
     this.cartItemsService.deleteCartItem(this.cartItem.id).subscribe()
   }
 
-
-
-
 }
