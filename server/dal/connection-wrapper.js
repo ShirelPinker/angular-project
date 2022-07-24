@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "1234",
-        database: "vacations"
+        database: "shopdb"
     })
 
     connection.connect(err=>{
@@ -22,7 +22,6 @@ function execute(sql) {
     return new Promise((resolve, reject) => {
         connection.execute(sql, (err, result) => {
             if (err) {
-                // console.log("Error " + err);
                 reject(err);
                 return;
             }
@@ -35,7 +34,6 @@ function executeWithParameters(sql, parameters) {
     return new Promise((resolve, reject) => {
         connection.execute(sql, parameters, (err, result) => {
             if (err) {
-                //console.log("Error " + err);
                 console.log("Failed interacting with DB, calling reject");
                 reject(err);
                 return;

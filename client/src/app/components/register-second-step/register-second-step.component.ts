@@ -24,7 +24,6 @@ export class RegisterSecondStepComponent implements OnInit {
     })
   }
   onSubmitClicked() {
-    console.log(this.signupForm);
     this.register2Details.emit(this.signupForm.value);
 
   }

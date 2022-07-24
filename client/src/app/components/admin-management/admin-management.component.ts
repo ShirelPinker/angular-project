@@ -95,19 +95,8 @@ export class AdminManagementComponent implements OnInit {
     }
 
     this.adminAction == AdminAction.Add ?
-      this.productsService.addNewProduct(productDetails).subscribe(() => this.clearFields(),
-        error => {
-          alert('Failed to add product');
-          console.log('Failed to add product ' + error.error);
-
-        }) :
-      this.productsService.updateProduct({ ...productDetails, id: this.productToEditId }).subscribe({
-        next: () => this.clearFields(),
-        error: (error) => {
-          alert(error.error);
-          console.log('Failed to edit product ' + error.error);
-        }
-      })
+      this.productsService.addNewProduct(productDetails).subscribe(() => this.clearFields()) :
+      this.productsService.updateProduct({ ...productDetails, id: this.productToEditId }).subscribe(() => this.clearFields() )
   }
 
   clearFields() {

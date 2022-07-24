@@ -20,7 +20,6 @@ export class ProductsStateService {
   updateProductsState(newProductState: ProductsState) {
     this.productsState = newProductState;
     this.productsStateSubject.next(this.productsState)
-    console.count(`product state has: ${this.productsState?.products.length} items`);
   }
 
   setProducts(products: Product[], productsShownBy, searchValue) {

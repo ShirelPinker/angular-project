@@ -17,7 +17,6 @@ export class CartStateService {
   updateCartState(newCartState: CartState) {
     this.cartState = newCartState;
     this.cartStateSubject.next(this.cartState)
-    console.log(`cart state: ${JSON.stringify(this.cartState, null,2)}`);
   }
 
   deActivateCart() {

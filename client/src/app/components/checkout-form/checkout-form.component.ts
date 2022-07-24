@@ -23,7 +23,6 @@ export class CheckoutFormComponent implements OnInit {
   loggedInUserId: number;
   loggedInUserCity: string;
   loggedInUserStreet: string;
-  //cahnge to customer
   cartId:number;
   faCreditCard= faCreditCard;
  

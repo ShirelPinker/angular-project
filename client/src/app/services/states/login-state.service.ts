@@ -17,8 +17,6 @@ export class LoginStateService {
 
   updateCustomerState(customer: LoggedInCustomer) {
     this.loggedInCustomerState.next(customer)
-
-    console.log(`login state: ${JSON.stringify(customer, null, 2)}`);
   }
 
 }

@@ -10,7 +10,6 @@ import { LoginStateService } from '../services/states/login-state.service';
 export class IsLoggedInGuard implements CanActivate {
 
   constructor(private loginStateService: LoginStateService, private router: Router) { }
-  // | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
