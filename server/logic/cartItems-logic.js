@@ -6,7 +6,7 @@ const ServerError = require("../errors/ServerError");
 async function addProductToCart(addedProduct) {
     validateQuantity(addedProduct.quantity)
     const productPrice = await productsDal.getProductPriceById(addedProduct.productId)
-    cartItemId = await cartItemsDal.addProductToCart(addedProduct, productPrice.price);
+    const cartItemId = await cartItemsDal.addProductToCart(addedProduct, productPrice.price);
     const cartItem =  await cartItemsDal.getCartItemById(cartItemId);
     return cartItem;
 }

@@ -8,12 +8,12 @@
     border-radius: 15px;
     background-color: rgb(112 231 124 / 13%);
     gap: 20px;
-
-
+    min-width: 367px;
 }
 
 .receiptPageImg{
     width: 234px;
+    max-width: 54%;
 }
 
 .receiptTitle{

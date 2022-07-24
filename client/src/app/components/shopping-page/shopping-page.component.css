@@ -5,23 +5,13 @@
 }
 
 .sideBar {
-    width: 28%;
-    border-top: 1px solid rgb(125, 158, 184);
-    border-right: 1px solid rgb(125, 158, 184);
-
-    padding: 10px;
-
-}
-
-.storeContainer {
-    width: 71%;
-    border-top: 1px solid rgb(125, 158, 184);
+    background-color: #efe2e24f;
     padding: 20px;
+
 }
 
 
-
-.searchContainer{
+.searchContainer {
     min-width: 150px;
     width: 250px;
     height: 30px;
@@ -29,22 +19,23 @@
 
 }
 
-.fullSizeStore{
+.fullSizeStore {
     float: left;
     width: 100%;
 }
 
-.minHeight{
+.minHeight {
     margin-top: 10px;
     min-height: 30px;
 }
 
-.minimizeSideBar{
+.minimizeSideBar {
     display: none;
 }
 
-.toggleBtn{
+.toggleBtn {
     outline: none;
     background: transparent;
     border: 1px solid transparent;
+    margin-bottom: 5px;
 }

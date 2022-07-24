@@ -23,6 +23,7 @@
 
 .itemImage {
     max-width: 50%;
+    max-width: 146px;
 }
 
 .cartItemTitle {

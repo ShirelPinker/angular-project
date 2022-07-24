@@ -1,7 +1,6 @@
-
 <div class="minHeight">
-        <app-categories [activeCategory]="activeCategory">
-        </app-categories>
+    <app-categories [activeCategory]="activeCategory">
+    </app-categories>
 </div>
 <button class="toggleBtn" (click)="toggleShow()">
     <fa-icon *ngIf="!isShown" [icon]="faAngleRight"></fa-icon>
@@ -9,12 +8,16 @@
 
 </button>
 
-<div class="mainContainer">
-    <div [class.minimizeSideBar]="isShown == false" class="sideBar">
-        <app-cart *ngIf="mode!=Mode.Admin"></app-cart>
-        <app-admin-management *ngIf="mode==Mode.Admin"></app-admin-management>
+<!-- <div class="mainContainer"> -->
+<div class="container">
+    <div class="row gy-5">
+        <div  [class.minimizeSideBar]="isShown == false" class="sideBar col-lg-4">
+            <app-cart *ngIf="mode!=Mode.Admin"></app-cart>
+            <app-admin-management *ngIf="mode==Mode.Admin"></app-admin-management>
+        </div>
+        <div [class.fullSizeStore]="isShown == false" class="storeContainer col-lg-8">
+            <app-products></app-products>
+        </div>
     </div>
-    <div [class.fullSizeStore]="isShown == false" class="storeContainer">
-        <app-products></app-products>
-    </div>
+
 </div>

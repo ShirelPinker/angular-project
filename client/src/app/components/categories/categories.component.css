@@ -15,7 +15,7 @@ button {
 }
 
 ul>form>input {
-    max-width: 250px;
+        max-width: 250px;
     height: 40px;
     margin: auto 0;
 }
@@ -30,5 +30,6 @@ ul>form>input {
 }
 
 form {
-    margin-right: 183px;
+    margin-right: 218px;
+    min-width: 89px;
 }
