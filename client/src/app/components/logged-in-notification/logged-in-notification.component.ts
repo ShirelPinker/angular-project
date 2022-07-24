@@ -31,20 +31,21 @@ export class LoggedInNotificationComponent implements OnInit {
 
   ngOnInit(): void {
     const cartStateSub = this.cartStateService.getCartState().pipe(filter(Boolean), untilDestroyed(this))
-      .subscribe(cartState => {        
+      .subscribe(cartState => {
         if (!(cartState!.cart)) {
           this.handleNewUser()
         } else {
           cartState!.cart.isActive ? this.handleUserWithActiveCart(cartState) : this.handleUserWithInactiveCart()
         }
       })
-  } 
+  }
 
 
   handleNewUser() {
-    this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).subscribe(loggedInCustomer => {
-      this.newUserName = loggedInCustomer!.firstName;
-    })
+    this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).pipe(
+      filter(Boolean)).subscribe(loggedInCustomer => {
+        this.newUserName = loggedInCustomer!.firstName;
+      })
     this.cartStatus = CartStatus.NoCart;
   }
 
