@@ -13,7 +13,7 @@ import { ServerError } from 'src/app/models/serverError';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  signupForm: UntypedFormGroup;
+  loginForm: UntypedFormGroup;
   isLoggedInCustomer: boolean = false;
   loginFailed = false;
   loginErrorMsg = '';
@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginStateService.getLoggedInCustomerState().pipe(untilDestroyed(this)).subscribe(loggedInCustomer => this.isLoggedInCustomer = Boolean(loggedInCustomer))
-    this.signupForm = new UntypedFormGroup({
-      'email': new UntypedFormControl("s@gmail.com", Validators.required),
-      'password': new UntypedFormControl("1234567", Validators.required),
+    this.loginForm = new UntypedFormGroup({
+      'email': new UntypedFormControl(null, Validators.required),
+      'password': new UntypedFormControl(null, Validators.required),
     })
   }
 
   onLoginClicked() {
-    const customerLoginData = { email: this.signupForm.value.email, password: this.signupForm.value.password }
+    const customerLoginData = { email: this.loginForm.value.email, password: this.loginForm.value.password }
     this.customersService.login(customerLoginData).subscribe((response) => {
       if (!response) {
         this.router.navigate(['/shopping/admin'])
