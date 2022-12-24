@@ -3,7 +3,7 @@
         <div class="subFormTitle">shipping details</div>
         <div>
             <label for="city">city</label>
-            <select class="form-select" (dblclick)="ondblclickCity()" formControlName="city">
+            <select class="form-select" (dblclick)="ondblclickCity()" formControlName="city" >
                 <option *ngFor="let city of cities" [ngValue]="city">
                     {{ city }}
                 </option>

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color:#ffeee79c;
+    background-color: #ffeee79c;
     height: 100%;
 }
 
@@ -22,7 +22,7 @@
 
 }
 
-input.ng-invalid.ng-touched{
+input.ng-invalid.ng-touched {
     border: 1px solid red
 }
 
@@ -34,13 +34,18 @@ input.ng-invalid.ng-touched{
     border: 1px solid transparent;
 }
 
-.errorMsg{
+.errorMsg {
     font-size: 13px;
 }
-.loginError{
-   color: red
+
+.loginError {
+    color: red
 }
 
-.goToShopComponent{
+.goToShopComponent {
     margin: auto;
+}
+
+.guestLoginBtn {
+    margin: auto; margin-bottom: 0
 }

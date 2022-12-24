@@ -30,17 +30,18 @@ export class LoginComponent implements OnInit {
 
   onLoginClicked() {
     const customerLoginData = { email: this.loginForm.value.email, password: this.loginForm.value.password }
-    this.customersService.login(customerLoginData).subscribe((response) => {
-      if (!response) {
-        this.router.navigate(['/shopping/admin'])
-      }
-    },
-      (error: ServerError) => {
-        if (!error.shouldDisplay) return
-        this.loginFailed = true;
-        this.loginErrorMsg = error.msg;
-      }
-    )
+    this.customersService.login(customerLoginData).subscribe({
+        next: (cartState) => {
+          if (!cartState) {
+            this.router.navigate(['/shopping/admin'])
+          }
+        },
+        error: (error: ServerError) => {
+          if (!error.shouldDisplay) return
+          this.loginFailed = true;
+          this.loginErrorMsg = error.msg;
+        }
+      })
   }
 
   onSignUpClicked() {

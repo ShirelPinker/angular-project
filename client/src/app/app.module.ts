@@ -34,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { CustomersService } from './services/customers.service';
+import { GuestLoginComponent } from './components/guest-login/guest-login.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { CustomersService } from './services/customers.service';
     CheckoutFormComponent,
     HighlighterPipe,
     AdminManagementComponent,
+    GuestLoginComponent,
   ],
   imports: [
     BrowserModule,

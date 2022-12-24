@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { filter, switchMap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { CartStateService } from 'src/app/services/states/cart-state.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomersService } from 'src/app/services/customers.service';
@@ -23,13 +23,16 @@ export class CheckoutFormComponent implements OnInit {
   loggedInUserId: number;
   loggedInUserCity: string;
   loggedInUserStreet: string;
-  cartId:number;
-  faCreditCard= faCreditCard;
- 
+  cartId: number;
+  faCreditCard = faCreditCard;
+
   constructor(private cartService: CartService, private ordersService: OrdersService, private cartStateService: CartStateService, private loginStateService: LoginStateService, private router: Router, private availabeDeliveryDate: AvailableDeliveyDateValidator, private customersService: CustomersService) { }
 
   ngOnInit(): void {
-    this.cartStateService.getCartState().pipe(filter(Boolean),untilDestroyed(this)).subscribe(cartState => {
+    this.setForm()
+    this.setDateToTomorrow();
+
+    this.cartStateService.getCartState().pipe(filter(Boolean), untilDestroyed(this)).subscribe(cartState => {
       this.cartId = cartState!.cart.id;
     })
 
@@ -37,31 +40,19 @@ export class CheckoutFormComponent implements OnInit {
       untilDestroyed(this),
       filter(Boolean),
       switchMap((customer) => {
-        this.loggedInUserId = customer.id ;
+        this.loggedInUserId = customer.id;
         return this.customersService.getCustomerAddress(customer.id)
-      })).subscribe(customerAddress => {
+      }), tap((customerAddress) => {
         this.loggedInUserCity = customerAddress.city;
         this.loggedInUserStreet = customerAddress.street;
-      })
-
-
-    this.checkoutForm = new UntypedFormGroup({
-      'city': new UntypedFormControl(null, Validators.required),
-      'street': new UntypedFormControl(null, Validators.required),
-      'deliveryDate': new UntypedFormControl(null, {
-        validators: Validators.required,
-        asyncValidators: [this.availabeDeliveryDate.validate.bind(this.availabeDeliveryDate)],
-        updateOn: 'blur'
       }),
-      'creditCard': new UntypedFormControl(null, {
-        validators: [Validators.required, caredidCardValidator()],
-        updateOn: 'blur'
-      })
-    })
+      tap(() => this.ondblclickCity()),
+      tap(() => this.ondblclickStreet())
+    ).subscribe()
   }
 
   onOrderClicked() {
-    const ccLastFourDigit= (this.checkoutForm.value.creditCard).slice(-4)
+    const ccLastFourDigit = (this.checkoutForm.value.creditCard).slice(-4)
     const orderDetails = {
       customerId: this.loggedInUserId,
       cartId: this.cartId,
@@ -71,7 +62,7 @@ export class CheckoutFormComponent implements OnInit {
       creditCard: ccLastFourDigit,
     }
     this.ordersService.addOrder(orderDetails).pipe(
-      switchMap(()=>{
+      switchMap(() => {
         return this.cartService.deActivateCart(this.cartId)
       }))
       .subscribe(() => this.router.navigate(['/receipt']))
@@ -93,15 +84,37 @@ export class CheckoutFormComponent implements OnInit {
     this.checkoutForm.controls['street'].setValue(this.loggedInUserStreet)
   }
 
+  private setForm() {
+    this.checkoutForm = new UntypedFormGroup({
+      'city': new UntypedFormControl(null, Validators.required),
+      'street': new UntypedFormControl(null, Validators.required),
+      'deliveryDate': new UntypedFormControl(null, {
+        validators: Validators.required,
+        asyncValidators: [this.availabeDeliveryDate.validate.bind(this.availabeDeliveryDate)],
+        updateOn: 'blur'
+      }),
+      'creditCard': new UntypedFormControl('1234 1234 1234 1234', {
+        validators: [Validators.required, this.caredidCardValidator()],
+        updateOn: 'blur'
+      })
+    });
+  }
 
+  private setDateToTomorrow() {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    const stringDate = date.toISOString().substring(0, 10);
+    this.checkoutForm.controls['deliveryDate'].setValue(stringDate);
+  }
 
-}
-export function caredidCardValidator(): ValidatorFn {
-  const regex = new RegExp(/^\d{16}$/);
+  private caredidCardValidator(): ValidatorFn {
+    const regex = new RegExp(/^\d{16}$/);
 
-  return (control: AbstractControl): ValidationErrors | null => {
-    const enteredCrediCard = (control.value)?.replaceAll(" ", "").replaceAll("-", "")
-    const isValidCc = regex.test(enteredCrediCard);
-    return isValidCc ? null : { isValidCc: { value: control.value } };
-  };
+    return (control: AbstractControl): ValidationErrors | null => {
+      const enteredCrediCard = (control.value)?.replaceAll(" ", "").replaceAll("-", "")
+      const isValidCc = regex.test(enteredCrediCard);
+      return isValidCc ? null : { isValidCc: { value: control.value } };
+    };
+  }
+
 }

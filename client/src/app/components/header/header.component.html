@@ -8,9 +8,6 @@
         <div class="headerRight">
             <div class="introContainer">
                 <div class="introduction">Hello, {{introductionName}}</div>
-                <div class="contactUs">
-                    Contact us: +1 568 588 958
-                </div>
             </div>
 
             <div *ngIf="isLoggedIn" (click)="onSignOutClicked()" class="signOutBtn">Sign Out</div>

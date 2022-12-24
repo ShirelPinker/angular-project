@@ -45,7 +45,9 @@
 
 .headerRight {
     display: flex;
-    gap: 19px
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .signOutBtn {
